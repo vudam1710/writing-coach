@@ -1,0 +1,745 @@
+{
+  "version": "v1",
+  "source": "08_Mẫu câu & Cấu trúc Writing",
+  "note": "related_topic_ids: gán bằng keyword + sửa tay — giáo viên review",
+  "templates": [
+    {
+      "id": "task1_01",
+      "task": "task1",
+      "section": "So sánh & Đối chiếu (Comparison)",
+      "subgroup": null,
+      "pattern": "As / Whereas / While X verb, Y verb (at the same time).",
+      "difficulty": "easy",
+      "related_topic_ids": [
+        "adverbial_clause"
+      ],
+      "examples": [
+        "While the figure for factories in Japan went up dramatically to 120,000 in 2010, the quantity in Korea plummeted to 12,000 at the same time."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_02",
+      "task": "task1",
+      "section": "So sánh & Đối chiếu (Comparison)",
+      "subgroup": null,
+      "pattern": "In comparison to / with X, which verb, Y verb.",
+      "difficulty": "hard",
+      "related_topic_ids": [
+        "relative_clause"
+      ],
+      "examples": [
+        "In comparison with the number of factories in Japan, which witnessed a dramatic increase to 120,000 in 2010, the quantity in Korea plummeted to 12,000 at this time."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_03",
+      "task": "task1",
+      "section": "So sánh & Đối chiếu (Comparison)",
+      "subgroup": null,
+      "pattern": "X verb, Verb-ing / which verb (nối vế so sánh).",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "relative_clause",
+        "participle_phrases"
+      ],
+      "examples": [
+        "The quantity of factories in Japan went through a period of dramatic increase to 120,000 in 2010, exceeding the number in Korea, which had only 12,000.",
+        "The number of students in high school increased, exceeding the figure for secondary school."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_04",
+      "task": "task1",
+      "section": "So sánh & Đối chiếu (Comparison)",
+      "subgroup": null,
+      "pattern": "Clause, followed by + Noun Phrase.",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "participle_phrases"
+      ],
+      "examples": [
+        "There was a dramatic growth in the number of factories in Japan to 120,000 in 2010, followed by a sharp decrease to 1,000 in 2015."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_05",
+      "task": "task1",
+      "section": "So sánh & Đối chiếu (Comparison)",
+      "subgroup": null,
+      "pattern": "Clause, prior to / before + Verb-ing.",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "gerund_infinitive"
+      ],
+      "examples": [
+        "The number of factories in Japan experienced an increase to 120,000 in 2010, before hitting a free fall to 1,000 in 2015."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_06",
+      "task": "task1",
+      "section": "So sánh & Đối chiếu (Comparison)",
+      "subgroup": null,
+      "pattern": "Clause, after + Verb-ing.",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "gerund_infinitive"
+      ],
+      "examples": [
+        "The figure for factories in Japan hit a free fall to 1,000 in 2015, after undergoing an increase to 120,000 in 2010."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_07",
+      "task": "task1",
+      "section": "So sánh & Đối chiếu (Comparison)",
+      "subgroup": null,
+      "pattern": "X was + comparative + than Y / X was the highest / lowest.",
+      "difficulty": "easy",
+      "related_topic_ids": [
+        "comparatives"
+      ],
+      "examples": [
+        "The consumption of coffee was significantly higher than that of tea throughout the period."
+      ],
+      "notes": [
+        "\"that of / those of\" dùng để tránh lặp danh từ khi so sánh."
+      ]
+    },
+    {
+      "id": "task1_08",
+      "task": "task1",
+      "section": "Mô tả Xu hướng (Trend)",
+      "subgroup": null,
+      "pattern": "X + verb (trend) + adverb + to / at + figure (in year).",
+      "difficulty": "easy",
+      "related_topic_ids": [],
+      "examples": [
+        "Car sales rose steadily to 5 million units in 2020."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_09",
+      "task": "task1",
+      "section": "Mô tả Xu hướng (Trend)",
+      "subgroup": null,
+      "pattern": "There was a + adj + noun (trend) + in X.",
+      "difficulty": "easy",
+      "related_topic_ids": [],
+      "examples": [
+        "There was a sharp increase in the number of tourists between 2000 and 2010."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_10",
+      "task": "task1",
+      "section": "Mô tả Xu hướng (Trend)",
+      "subgroup": null,
+      "pattern": "X saw / witnessed / experienced + a + adj + noun.",
+      "difficulty": "medium",
+      "related_topic_ids": [],
+      "examples": [
+        "The unemployment rate witnessed a gradual decline over the decade."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_11",
+      "task": "task1",
+      "section": "Mô tả Xu hướng (Trend)",
+      "subgroup": null,
+      "pattern": "After + Verb-ing …, X + verb (giai đoạn nối tiếp).",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "gerund_infinitive"
+      ],
+      "examples": [
+        "After peaking at 80% in 2015, the figure gradually dropped to 50%."
+      ],
+      "notes": [
+        "Cặp từ hay dùng: dramatically / sharply / significantly (mạnh) — gradually / steadily / slightly (nhẹ)."
+      ]
+    },
+    {
+      "id": "task1_12",
+      "task": "task1",
+      "section": "Nhóm & Nêu bật số liệu (Grouping / Highlighting)",
+      "subgroup": null,
+      "pattern": "The largest / smallest proportion of … belonged to X.",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "comparatives"
+      ],
+      "examples": [
+        "The largest proportion of household spending belonged to housing, at 35%."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_13",
+      "task": "task1",
+      "section": "Nhóm & Nêu bật số liệu (Grouping / Highlighting)",
+      "subgroup": null,
+      "pattern": "X accounted for / made up + figure of the total.",
+      "difficulty": "easy",
+      "related_topic_ids": [],
+      "examples": [
+        "Renewable energy accounted for nearly a quarter of total electricity production."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_14",
+      "task": "task1",
+      "section": "Nhóm & Nêu bật số liệu (Grouping / Highlighting)",
+      "subgroup": null,
+      "pattern": "X was followed by Y and Z, at … respectively.",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "participle_phrases"
+      ],
+      "examples": [
+        "The most popular activity was reading, followed by gaming and cooking, at 40%, 25% and 15% respectively."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_15",
+      "task": "task1",
+      "section": "Overview",
+      "subgroup": null,
+      "pattern": "Overall, it is clear that … / Overall, X … while Y ….",
+      "difficulty": "easy",
+      "related_topic_ids": [
+        "noun_clause"
+      ],
+      "examples": [
+        "Overall, it is clear that car ownership rose across all regions, while public transport use declined."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_16",
+      "task": "task1",
+      "section": "Overview",
+      "subgroup": null,
+      "pattern": "In general, the most noticeable trend / feature is that ….",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "noun_clause"
+      ],
+      "examples": [
+        "In general, the most noticeable feature is that men consistently outspent women in every category."
+      ],
+      "notes": [
+        "Overview = KHÔNG số liệu, chỉ nêu xu hướng/đặc điểm chính. Bắt buộc phải có."
+      ]
+    },
+    {
+      "id": "task1_17",
+      "task": "task1",
+      "section": "Process (Quy trình)",
+      "subgroup": null,
+      "pattern": "First / Then / After that / Finally + passive voice.",
+      "difficulty": "easy",
+      "related_topic_ids": [
+        "passive_present"
+      ],
+      "examples": [
+        "First, the raw materials are collected. Then they are heated and shaped into blocks."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_18",
+      "task": "task1",
+      "section": "Process (Quy trình)",
+      "subgroup": null,
+      "pattern": "Once X has been done, Y is + past participle.",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "adverbial_clause",
+        "passive_perfect"
+      ],
+      "examples": [
+        "Once the mixture has been prepared, it is poured into moulds."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_19",
+      "task": "task1",
+      "section": "Process (Quy trình)",
+      "subgroup": null,
+      "pattern": "X is + p.p., before being + p.p. / after which ….",
+      "difficulty": "hard",
+      "related_topic_ids": [
+        "relative_clause",
+        "passive_present"
+      ],
+      "examples": [
+        "The beans are roasted, before being ground into powder."
+      ],
+      "notes": [
+        "Process ưu tiên bị động (passive) + từ nối trình tự; hạn chế \"I / we\"."
+      ]
+    },
+    {
+      "id": "task1_20",
+      "task": "task1",
+      "section": "Map (Bản đồ / thay đổi vị trí)",
+      "subgroup": null,
+      "pattern": "X was replaced by / converted into Y.",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "passive_past"
+      ],
+      "examples": [
+        "The forest to the north was cleared and replaced by a residential area."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_21",
+      "task": "task1",
+      "section": "Map (Bản đồ / thay đổi vị trí)",
+      "subgroup": null,
+      "pattern": "A new X was built / constructed in the … of the area.",
+      "difficulty": "easy",
+      "related_topic_ids": [
+        "passive_past"
+      ],
+      "examples": [
+        "A new shopping mall was constructed in the centre of the town."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task1_22",
+      "task": "task1",
+      "section": "Map (Bản đồ / thay đổi vị trí)",
+      "subgroup": null,
+      "pattern": "X was expanded / extended / demolished / relocated to ….",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "passive_past"
+      ],
+      "examples": [
+        "The small harbour was expanded and a marina was added to the east."
+      ],
+      "notes": [
+        "Map thay đổi theo thời gian → dùng thì quá khứ + bị động; nêu phương hướng (north/south/east/west, adjacent to)."
+      ]
+    },
+    {
+      "id": "task2_01",
+      "task": "task2",
+      "section": "Introduction — Paraphrase + Thesis",
+      "subgroup": null,
+      "pattern": "It is often argued / claimed that + [paraphrase đề].",
+      "difficulty": "easy",
+      "related_topic_ids": [
+        "noun_clause"
+      ],
+      "examples": [
+        "It is often argued that governments should invest more in public transport than in new roads."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_02",
+      "task": "task2",
+      "section": "Introduction — Paraphrase + Thesis",
+      "subgroup": null,
+      "pattern": "While some people believe X, others contend that Y.",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "adverbial_clause",
+        "noun_clause"
+      ],
+      "examples": [
+        "While some people believe that technology isolates us, others contend that it brings people closer together."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_03",
+      "task": "task2",
+      "section": "Introduction — Paraphrase + Thesis",
+      "subgroup": null,
+      "pattern": "This essay will argue that … / In my opinion, ….",
+      "difficulty": "easy",
+      "related_topic_ids": [],
+      "examples": [
+        "This essay will argue that the benefits of remote work outweigh its drawbacks."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_04",
+      "task": "task2",
+      "section": "Topic Sentence (câu chủ đề đoạn thân bài)",
+      "subgroup": null,
+      "pattern": "One (major) reason / advantage / argument is that ….",
+      "difficulty": "easy",
+      "related_topic_ids": [
+        "noun_clause"
+      ],
+      "examples": [
+        "One major advantage of studying abroad is exposure to different cultures."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_05",
+      "task": "task2",
+      "section": "Topic Sentence (câu chủ đề đoạn thân bài)",
+      "subgroup": null,
+      "pattern": "The main reason why … is that ….",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "noun_clause"
+      ],
+      "examples": [
+        "The main reason why cities are becoming overcrowded is the lack of rural employment."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_06",
+      "task": "task2",
+      "section": "Explanation & Example (giải thích + ví dụ)",
+      "subgroup": null,
+      "pattern": "This is because … / This means that ….",
+      "difficulty": "easy",
+      "related_topic_ids": [
+        "adverbial_clause",
+        "noun_clause"
+      ],
+      "examples": [
+        "This is because a shorter commute leaves employees more time to rest and be productive."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_07",
+      "task": "task2",
+      "section": "Explanation & Example (giải thích + ví dụ)",
+      "subgroup": null,
+      "pattern": "For instance / A clear example of this is ….",
+      "difficulty": "easy",
+      "related_topic_ids": [],
+      "examples": [
+        "A clear example of this is Finland, where free education has produced high literacy rates."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_08",
+      "task": "task2",
+      "section": "Explanation & Example (giải thích + ví dụ)",
+      "subgroup": null,
+      "pattern": "As a result / Consequently, ….",
+      "difficulty": "medium",
+      "related_topic_ids": [],
+      "examples": [
+        "As a result, workers become more motivated and less likely to leave their jobs."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_09",
+      "task": "task2",
+      "section": "Opinion & Concession (nêu ý kiến + nhượng bộ)",
+      "subgroup": null,
+      "pattern": "While it is true that X, I believe that Y.",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "adverbial_clause",
+        "noun_clause"
+      ],
+      "examples": [
+        "While it is true that fast food is convenient, I believe its health costs are too high."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_10",
+      "task": "task2",
+      "section": "Opinion & Concession (nêu ý kiến + nhượng bộ)",
+      "subgroup": null,
+      "pattern": "Admittedly, … . However, ….",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "compound_sentence"
+      ],
+      "examples": [
+        "Admittedly, building new roads can ease traffic in the short term. However, it encourages more car use over time."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_11",
+      "task": "task2",
+      "section": "Opinion & Concession (nêu ý kiến + nhượng bộ)",
+      "subgroup": null,
+      "pattern": "There is no doubt that … , yet ….",
+      "difficulty": "hard",
+      "related_topic_ids": [
+        "noun_clause",
+        "compound_sentence"
+      ],
+      "examples": [
+        "There is no doubt that tourism boosts the economy, yet it can damage local environments."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_12",
+      "task": "task2",
+      "section": "Cause – Effect – Solution",
+      "subgroup": null,
+      "pattern": "X leads to / results in / gives rise to Y.",
+      "difficulty": "medium",
+      "related_topic_ids": [],
+      "examples": [
+        "Rapid urbanisation gives rise to serious housing shortages."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_13",
+      "task": "task2",
+      "section": "Cause – Effect – Solution",
+      "subgroup": null,
+      "pattern": "This problem could be tackled / addressed by + Verb-ing.",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "gerund_infinitive",
+        "passive_modal"
+      ],
+      "examples": [
+        "This problem could be addressed by investing in affordable public housing."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_14",
+      "task": "task2",
+      "section": "Cause – Effect – Solution",
+      "subgroup": null,
+      "pattern": "One effective solution would be to + V.",
+      "difficulty": "easy",
+      "related_topic_ids": [
+        "gerund_infinitive"
+      ],
+      "examples": [
+        "One effective solution would be to impose higher taxes on private vehicles."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_15",
+      "task": "task2",
+      "section": "Conclusion",
+      "subgroup": null,
+      "pattern": "In conclusion, … / To sum up, ….",
+      "difficulty": "easy",
+      "related_topic_ids": [],
+      "examples": [
+        "In conclusion, although both views have merit, the advantages clearly outweigh the disadvantages."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_16",
+      "task": "task2",
+      "section": "Conclusion",
+      "subgroup": null,
+      "pattern": "Overall, it is clear that … and therefore ….",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "noun_clause"
+      ],
+      "examples": [
+        "Overall, it is clear that education is the key factor, and therefore it deserves the greatest investment."
+      ],
+      "notes": [
+        "Conclusion = nhắc lại quan điểm (paraphrase thesis), KHÔNG thêm ý mới, KHÔNG ví dụ mới."
+      ]
+    },
+    {
+      "id": "task2_17",
+      "task": "task2",
+      "section": "Câu ghép & Câu phức (Complex / Compound — nâng band GRA)",
+      "subgroup": "Nhóm A — Câu ghép (Compound)",
+      "pattern": "Clause, and / but / so / yet + clause.",
+      "difficulty": "easy",
+      "related_topic_ids": [
+        "compound_sentence"
+      ],
+      "examples": [
+        "Public transport reduces traffic, but many people still prefer private cars."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_18",
+      "task": "task2",
+      "section": "Câu ghép & Câu phức (Complex / Compound — nâng band GRA)",
+      "subgroup": "Nhóm A — Câu ghép (Compound)",
+      "pattern": "Clause; moreover / however / therefore, clause.",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "compound_sentence"
+      ],
+      "examples": [
+        "Renewable energy is clean; however, it remains expensive to install."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_19",
+      "task": "task2",
+      "section": "Câu ghép & Câu phức (Complex / Compound — nâng band GRA)",
+      "subgroup": "Nhóm A — Câu ghép (Compound)",
+      "pattern": "Not only + clause, but + S + also + clause. (đảo ngữ)",
+      "difficulty": "hard",
+      "related_topic_ids": [
+        "inversion"
+      ],
+      "examples": [
+        "Not only does exercise improve health, but it also boosts mental wellbeing."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_20",
+      "task": "task2",
+      "section": "Câu ghép & Câu phức (Complex / Compound — nâng band GRA)",
+      "subgroup": "Nhóm B — Câu phức (Complex)",
+      "pattern": "Although / Even though + clause, clause. (nhượng bộ)",
+      "difficulty": "easy",
+      "related_topic_ids": [
+        "adverbial_clause"
+      ],
+      "examples": [
+        "Although online learning is convenient, it lacks face-to-face interaction."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_21",
+      "task": "task2",
+      "section": "Câu ghép & Câu phức (Complex / Compound — nâng band GRA)",
+      "subgroup": "Nhóm B — Câu phức (Complex)",
+      "pattern": "While / Whereas + clause, clause. (tương phản)",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "adverbial_clause"
+      ],
+      "examples": [
+        "Whereas cities offer more jobs, rural areas provide a cleaner environment."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_22",
+      "task": "task2",
+      "section": "Câu ghép & Câu phức (Complex / Compound — nâng band GRA)",
+      "subgroup": "Nhóm B — Câu phức (Complex)",
+      "pattern": "If / Unless + clause, clause. (điều kiện)",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "conditionals"
+      ],
+      "examples": [
+        "Unless governments act now, pollution will continue to rise."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_23",
+      "task": "task2",
+      "section": "Câu ghép & Câu phức (Complex / Compound — nâng band GRA)",
+      "subgroup": "Nhóm B — Câu phức (Complex)",
+      "pattern": "S + who / which / that + clause (mệnh đề quan hệ)",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "relative_clause"
+      ],
+      "examples": [
+        "Students who study abroad often gain valuable independence."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_24",
+      "task": "task2",
+      "section": "Câu ghép & Câu phức (Complex / Compound — nâng band GRA)",
+      "subgroup": "Nhóm B — Câu phức (Complex)",
+      "pattern": "…, which + clause (relative bổ nghĩa cả câu)",
+      "difficulty": "hard",
+      "related_topic_ids": [
+        "relative_clause"
+      ],
+      "examples": [
+        "Many families own two cars, which worsens urban congestion."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_25",
+      "task": "task2",
+      "section": "Câu ghép & Câu phức (Complex / Compound — nâng band GRA)",
+      "subgroup": "Nhóm C — Rút gọn & nâng cao",
+      "pattern": "Verb-ing …, clause. (participle mở đầu)",
+      "difficulty": "hard",
+      "related_topic_ids": [
+        "participle_phrases"
+      ],
+      "examples": [
+        "Facing rising costs, many students choose local universities."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_26",
+      "task": "task2",
+      "section": "Câu ghép & Câu phức (Complex / Compound — nâng band GRA)",
+      "subgroup": "Nhóm C — Rút gọn & nâng cao",
+      "pattern": "Clause, thereby / thus + Verb-ing. (nêu kết quả)",
+      "difficulty": "hard",
+      "related_topic_ids": [
+        "participle_phrases"
+      ],
+      "examples": [
+        "Renewable energy cuts emissions, thereby slowing climate change."
+      ],
+      "notes": []
+    },
+    {
+      "id": "task2_27",
+      "task": "task2",
+      "section": "Câu ghép & Câu phức (Complex / Compound — nâng band GRA)",
+      "subgroup": "Nhóm C — Rút gọn & nâng cao",
+      "pattern": "By + Verb-ing, S + can + V. (nêu phương tiện)",
+      "difficulty": "medium",
+      "related_topic_ids": [
+        "gerund_infinitive"
+      ],
+      "examples": [
+        "By investing in education, governments can reduce long-term poverty."
+      ],
+      "notes": []
+    }
+  ]
+}

@@ -1,0 +1,520 @@
+{
+  "version": "v1",
+  "source": "02_Checklist ngữ pháp IELTS + Nhóm 6 mở rộng",
+  "priority_weights": {
+    "red": 3,
+    "yellow": 2,
+    "green": 1
+  },
+  "groups": {
+    "1": "Thì động từ",
+    "2": "Cấu trúc câu",
+    "3": "Bị động & Động từ khuyết thiếu",
+    "4": "Mạo từ, Danh từ & Số nhiều",
+    "5": "Các cấu trúc quan trọng khác",
+    "6": "Lỗi nền tảng (mở rộng — không có trong checklist gốc)"
+  },
+  "topics": [
+    {
+      "id": "present_simple",
+      "group": 1,
+      "name_vi": "Hiện tại đơn",
+      "name_en": "Simple Present",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "past_simple",
+      "group": 1,
+      "name_vi": "Quá khứ đơn",
+      "name_en": "Simple Past",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "future_simple",
+      "group": 1,
+      "name_vi": "Tương lai (will / be going to)",
+      "name_en": "Future (will / be going to)",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "present_continuous",
+      "group": 1,
+      "name_vi": "Hiện tại tiếp diễn",
+      "name_en": "Present Continuous",
+      "priority": "yellow",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "past_continuous",
+      "group": 1,
+      "name_vi": "Quá khứ tiếp diễn",
+      "name_en": "Past Continuous",
+      "priority": "yellow",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "present_perfect",
+      "group": 1,
+      "name_vi": "Hiện tại hoàn thành",
+      "name_en": "Present Perfect",
+      "priority": "red",
+      "range_checkable": true,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "past_perfect",
+      "group": 1,
+      "name_vi": "Quá khứ hoàn thành",
+      "name_en": "Past Perfect",
+      "priority": "yellow",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "present_perfect_continuous",
+      "group": 1,
+      "name_vi": "Hiện tại hoàn thành tiếp diễn",
+      "name_en": "Present Perfect Continuous",
+      "priority": "green",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "future_perfect",
+      "group": 1,
+      "name_vi": "Tương lai hoàn thành",
+      "name_en": "Future Perfect",
+      "priority": "green",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "simple_sentence",
+      "group": 2,
+      "name_vi": "Câu đơn",
+      "name_en": "Simple Sentence",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "compound_sentence",
+      "group": 2,
+      "name_vi": "Câu ghép",
+      "name_en": "Compound Sentence",
+      "priority": "red",
+      "range_checkable": true,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "complex_sentence",
+      "group": 2,
+      "name_vi": "Câu phức",
+      "name_en": "Complex Sentence",
+      "priority": "red",
+      "range_checkable": true,
+      "lesson_id": "adverbial_clause",
+      "source": "02"
+    },
+    {
+      "id": "relative_clause",
+      "group": 2,
+      "name_vi": "Mệnh đề quan hệ",
+      "name_en": "Relative Clause",
+      "priority": "red",
+      "range_checkable": true,
+      "lesson_id": "relative_clause",
+      "source": "02"
+    },
+    {
+      "id": "conditionals",
+      "group": 2,
+      "name_vi": "Câu điều kiện",
+      "name_en": "Conditionals (Type 0/1/2/3)",
+      "priority": "red",
+      "range_checkable": true,
+      "lesson_id": "conditionals",
+      "source": "02"
+    },
+    {
+      "id": "adverbial_clause",
+      "group": 2,
+      "name_vi": "Mệnh đề trạng ngữ",
+      "name_en": "Adverbial Clause",
+      "priority": "yellow",
+      "range_checkable": true,
+      "lesson_id": "adverbial_clause",
+      "source": "02"
+    },
+    {
+      "id": "noun_clause",
+      "group": 2,
+      "name_vi": "Mệnh đề danh từ",
+      "name_en": "Noun Clause",
+      "priority": "yellow",
+      "range_checkable": true,
+      "lesson_id": "noun_clause",
+      "source": "02"
+    },
+    {
+      "id": "passive_present",
+      "group": 3,
+      "name_vi": "Bị động thì hiện tại",
+      "name_en": "Passive — present",
+      "priority": "red",
+      "range_checkable": true,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "passive_past",
+      "group": 3,
+      "name_vi": "Bị động thì quá khứ",
+      "name_en": "Passive — past",
+      "priority": "red",
+      "range_checkable": true,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "passive_perfect",
+      "group": 3,
+      "name_vi": "Bị động thì hoàn thành",
+      "name_en": "Passive — perfect",
+      "priority": "yellow",
+      "range_checkable": true,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "passive_modal",
+      "group": 3,
+      "name_vi": "Bị động với modal",
+      "name_en": "Passive with modals",
+      "priority": "yellow",
+      "range_checkable": true,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "modal_can_could",
+      "group": 3,
+      "name_vi": "can / could",
+      "name_en": "can / could",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "modal_will_would",
+      "group": 3,
+      "name_vi": "will / would",
+      "name_en": "will / would",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "modal_should",
+      "group": 3,
+      "name_vi": "should / ought to",
+      "name_en": "should / ought to",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "modal_must",
+      "group": 3,
+      "name_vi": "must / have to / need to",
+      "name_en": "must / have to / need to",
+      "priority": "yellow",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "modal_possibility",
+      "group": 3,
+      "name_vi": "may / might / could (khả năng)",
+      "name_en": "may / might / could (possibility)",
+      "priority": "yellow",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "articles",
+      "group": 4,
+      "name_vi": "Mạo từ a / an / the / ∅",
+      "name_en": "Articles",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "countable_uncountable",
+      "group": 4,
+      "name_vi": "Danh từ đếm được / không đếm được",
+      "name_en": "Countable / Uncountable",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "irregular_plurals",
+      "group": 4,
+      "name_vi": "Số nhiều bất quy tắc",
+      "name_en": "Irregular Plurals",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "quantifiers",
+      "group": 4,
+      "name_vi": "Lượng từ",
+      "name_en": "Quantifiers",
+      "priority": "yellow",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "compound_nouns",
+      "group": 4,
+      "name_vi": "Danh từ ghép",
+      "name_en": "Compound Nouns",
+      "priority": "yellow",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "gerund_infinitive",
+      "group": 5,
+      "name_vi": "Gerund vs Infinitive",
+      "name_en": "Gerund vs Infinitive",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": "gerund_infinitive",
+      "source": "02"
+    },
+    {
+      "id": "comparatives",
+      "group": 5,
+      "name_vi": "So sánh hơn & nhất",
+      "name_en": "Comparative & Superlative",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "prepositions",
+      "group": 5,
+      "name_vi": "Giới từ",
+      "name_en": "Prepositions",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "reported_speech",
+      "group": 5,
+      "name_vi": "Câu gián tiếp",
+      "name_en": "Reported Speech",
+      "priority": "yellow",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "02"
+    },
+    {
+      "id": "inversion",
+      "group": 5,
+      "name_vi": "Đảo ngữ",
+      "name_en": "Inversion",
+      "priority": "green",
+      "range_checkable": true,
+      "lesson_id": "inversion",
+      "source": "02"
+    },
+    {
+      "id": "parallelism",
+      "group": 5,
+      "name_vi": "Cấu trúc song hành",
+      "name_en": "Parallelism",
+      "priority": "green",
+      "range_checkable": true,
+      "lesson_id": "parallelism",
+      "source": "02"
+    },
+    {
+      "id": "participle_phrases",
+      "group": 5,
+      "name_vi": "Phân từ (rút gọn mệnh đề)",
+      "name_en": "Participle Phrases",
+      "priority": "green",
+      "range_checkable": true,
+      "lesson_id": "participle_phrases",
+      "source": "02"
+    },
+    {
+      "id": "sva",
+      "group": 6,
+      "name_vi": "Hoà hợp chủ ngữ – động từ",
+      "name_en": "Subject–Verb Agreement",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "extension"
+    },
+    {
+      "id": "plural_s",
+      "group": 6,
+      "name_vi": "Quên -s danh từ số nhiều",
+      "name_en": "Missing plural -s",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "extension"
+    },
+    {
+      "id": "word_form",
+      "group": 6,
+      "name_vi": "Sai từ loại (noun/adj/adv/verb)",
+      "name_en": "Word Form",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "extension"
+    },
+    {
+      "id": "run_on_fragment",
+      "group": 6,
+      "name_vi": "Câu dính (run-on/comma splice) & câu cụt (fragment)",
+      "name_en": "Run-on / Fragment",
+      "priority": "red",
+      "range_checkable": false,
+      "lesson_id": "adverbial_clause",
+      "source": "extension"
+    },
+    {
+      "id": "existential_there",
+      "group": 6,
+      "name_vi": "Dùng 'have' thay 'there is/are'",
+      "name_en": "Existential 'there' (vs 'have')",
+      "priority": "yellow",
+      "range_checkable": false,
+      "lesson_id": null,
+      "source": "extension"
+    },
+    {
+      "id": "double_connector",
+      "group": 6,
+      "name_vi": "Thừa liên từ (Although…but, Because…so)",
+      "name_en": "Double Connector",
+      "priority": "yellow",
+      "range_checkable": false,
+      "lesson_id": "adverbial_clause",
+      "source": "extension"
+    }
+  ],
+  "band_ladder": [
+    {
+      "band_from": 4.5,
+      "band_to": 5.0,
+      "topic_ids": [
+        "present_simple",
+        "past_simple",
+        "future_simple",
+        "simple_sentence",
+        "articles",
+        "comparatives",
+        "prepositions"
+      ],
+      "note": ""
+    },
+    {
+      "band_from": 5.0,
+      "band_to": 5.5,
+      "topic_ids": [
+        "present_perfect",
+        "passive_present",
+        "passive_past",
+        "complex_sentence",
+        "modal_can_could",
+        "modal_will_would",
+        "modal_should",
+        "modal_must",
+        "modal_possibility",
+        "gerund_infinitive"
+      ],
+      "note": ""
+    },
+    {
+      "band_from": 5.5,
+      "band_to": 6.0,
+      "topic_ids": [
+        "conditionals",
+        "relative_clause",
+        "compound_sentence",
+        "quantifiers"
+      ],
+      "note": "Conditionals type 1 & 2"
+    },
+    {
+      "band_from": 6.0,
+      "band_to": 6.5,
+      "topic_ids": [
+        "conditionals",
+        "adverbial_clause",
+        "past_perfect",
+        "noun_clause",
+        "reported_speech"
+      ],
+      "note": "Conditionals type 3"
+    },
+    {
+      "band_from": 6.5,
+      "band_to": 7.0,
+      "topic_ids": [
+        "inversion",
+        "participle_phrases",
+        "parallelism",
+        "passive_perfect",
+        "passive_modal",
+        "present_perfect_continuous",
+        "future_perfect"
+      ],
+      "note": "Passive phức tạp"
+    }
+  ],
+  "range_note": "v1: tắt range_checkable cho past_perfect, reported_speech, present_perfect_continuous, future_perfect — ít dùng trong Task 2 (giáo viên duyệt 2026-10-06)."
+}

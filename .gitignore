@@ -1,0 +1,28 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Secrets — KHÔNG BAO GIỜ commit
+.env
+.streamlit/secrets.toml
+
+# Dữ liệu thật (bài học sinh, nhãn giáo viên, whitelist) — chỉ để local
+data/gold/*
+!data/gold/README.md
+whitelist*.csv
+
+# Wordlist CEFR: chưa rõ license → không commit cho tới khi kiểm tra
+data/wordlists/*
+!data/wordlists/.gitkeep
+!data/wordlists/README.md
+
+# Output thô của từng lần chạy (có thể chứa bài viết) — chỉ commit file chỉ số
+evaluation/results/**/raw/
+
+# Scratch & OS
+_scratch/
+.DS_Store
+Thumbs.db

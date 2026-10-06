@@ -1,0 +1,455 @@
+{
+  "version": "v1",
+  "source": "06_Ngữ pháp trọng tâm cho IELTS Writing",
+  "lessons": [
+    {
+      "id": "adverbial_clause",
+      "number": 1,
+      "title": "Mệnh đề trạng ngữ (Adverbial Clauses)",
+      "use_for": "Task 2 (mọi dạng đề) · Task 1 (so sánh, nối giai đoạn)",
+      "why": "Đây là nền của câu phức trong Task 2. Hầu hết câu chủ đề, câu nhượng bộ và câu nhân–quả đều dựa vào nó. Muốn qua band 6→7 ở tiêu chí GRA, học sinh phải viết được câu phức mà không lỗi.",
+      "formulas": [
+        "Although / Even though / Though + S + V, S + V. — nhượng bộ – 'mặc dù'",
+        "While / Whereas + S + V, S + V. — tương phản – 'trong khi'",
+        "Because / Since / As + S + V, S + V. — nguyên nhân",
+        "If / Unless / As long as + S + V, S + V. — điều kiện (xem thêm mục 4)",
+        "When / After / Before / Once + S + V, S + V. — thời gian",
+        "so + adj + that... / such + (a) + N + that... — kết quả – 'đến mức mà'"
+      ],
+      "warning": "Lưu ý: Mệnh đề trạng ngữ là mệnh đề PHỤ — không đứng một mình thành câu được. Đứng đầu câu thì có dấu phẩy ngăn cách; đứng sau mệnh đề chính thì thường không cần phẩy.",
+      "examples": [
+        "Although online learning is convenient, it lacks face-to-face interaction. [file 08 – Nhóm B #4]",
+        "Whereas cities offer more jobs, rural areas provide a cleaner environment. [file 08 – Nhóm B #5]",
+        "Because commuting wastes so much time that productivity falls, many firms now allow remote work. [kết hợp nhân–quả + kết quả]"
+      ],
+      "common_mistakes": [
+        "Although it is cheap, but it is slow. → ✓ Although it is cheap, it is slow. (Although đã có nghĩa 'mặc dù' → bỏ 'but')",
+        "Because it is cheap. → ✓ It is popular because it is cheap. (mệnh đề phụ đứng một mình = câu cụt (fragment))",
+        "While cities are crowded rural areas are quiet. → ✓ While cities are crowded, rural areas are quiet. (thiếu phẩy khi mệnh đề phụ đứng đầu)"
+      ],
+      "exercises": {
+        "A": [
+          "Nối 2 câu bằng 'Although': Public transport is cheap. / Many people still prefer cars.",
+          "Viết lại dùng 'Whereas' để tương phản: Online classes are flexible. / Traditional classes offer more interaction.",
+          "Sửa lỗi: Because the city is overcrowded. Housing prices are rising.",
+          "Điền so...that / such...that: Traffic was ______ heavy ______ commuters spent hours on the road.",
+          "Viết 1 câu chủ đề (topic sentence) cho đề 'studying abroad' dùng mệnh đề nhượng bộ (Although/Even though)."
+        ],
+        "B": [
+          "(Môi trường) Dùng 'Although': nêu mặt trái của phát triển kinh tế đối với môi trường.",
+          "(Công nghệ) Dùng 'While/Whereas': tương phản lợi và hại của mạng xã hội.",
+          "(Y tế) Dùng 'Because/Since': giải thích vì sao chi phí y tế ngày càng tăng.",
+          "(Giáo dục) Dùng 'so...that': nói về áp lực thi cử của học sinh.",
+          "(Du lịch) Dùng mệnh đề thời gian 'When/Once': tác động của du lịch đại chúng lên điểm đến."
+        ]
+      },
+      "answers": {
+        "A": [
+          "Although public transport is cheap, many people still prefer cars.",
+          "Whereas online classes are flexible, traditional classes offer more interaction. (hoặc đảo hai vế)",
+          "Because the city is overcrowded, housing prices are rising. (gộp thành 1 câu, thêm phẩy)",
+          "Traffic was so heavy that commuters spent hours on the road.",
+          "Gợi ý: Although studying abroad is expensive, it offers invaluable exposure to different cultures."
+        ],
+        "B": [
+          "Although economic growth raises living standards, it often accelerates environmental degradation.",
+          "While social media keeps people connected, it can also spread misinformation rapidly.",
+          "Healthcare costs are rising because populations are ageing and treatments are becoming more advanced.",
+          "Exam pressure has become so intense that many students suffer from anxiety.",
+          "Once a destination becomes popular, mass tourism can quickly damage its local environment."
+        ]
+      }
+    },
+    {
+      "id": "noun_clause",
+      "number": 2,
+      "title": "Mệnh đề danh từ (Noun Clauses)",
+      "use_for": "Task 2 (Introduction, Topic sentence, Overview)",
+      "why": "Mệnh đề danh từ đóng vai chủ ngữ hoặc tân ngữ trong câu. Task 2 dùng dày đặc: nêu quan điểm ('argue that…'), nêu lý do ('The reason why… is that…'), và nhấn mạnh ('What matters is…'). Thiếu nó, câu văn cụt và không nêu được lập luận.",
+      "formulas": [
+        "S + argue / believe / claim / suggest + (that) + S + V. — that-clause làm tân ngữ",
+        "The fact / reason / problem is that + S + V. — that-clause làm bổ ngữ",
+        "It + be + adj + that + S + V. — cấu trúc 'It is clear/true that…'",
+        "What / Why / Whether + S + V + ... — wh-clause làm chủ ngữ hoặc tân ngữ"
+      ],
+      "warning": "Lưu ý: Trong văn học thuật (band 7), nên GIỮ 'that' để câu dài dễ đọc, dù đôi khi có thể lược bỏ. Sau 'The reason' phải dùng 'that', KHÔNG dùng 'because'.",
+      "examples": [
+        "It is often argued that governments should invest more in public transport than in new roads. [file 08 – Intro #1]",
+        "This essay will argue that the benefits of remote work outweigh its drawbacks. [file 08 – Intro #3]",
+        "The main reason why cities are becoming overcrowded is that rural areas lack employment. [file 08 – Topic #2 (dạng đầy đủ)]"
+      ],
+      "common_mistakes": [
+        "I believe what technology helps us. → ✓ I believe that technology helps us. (diễn đạt sự việc → dùng 'that', không phải 'what')",
+        "The reason is because it is cheap. → ✓ The reason is that it is cheap. (sau 'The reason' dùng 'that')",
+        "It is clear car ownership rose. → ✓ It is clear that car ownership rose. (giữ 'that' cho rõ trong văn học thuật)"
+      ],
+      "exercises": {
+        "A": [
+          "Paraphrase đề bằng 'It is often argued that…': Governments should ban private cars in city centres.",
+          "Viết câu thesis dùng 'This essay will argue that…' cho đề về remote work.",
+          "Sửa lỗi: The reason why prices rise is because demand is high.",
+          "Chuyển thành mệnh đề danh từ làm chủ ngữ: Technology improves education. → What ______ .",
+          "Viết câu overview dùng 'It is clear that…' cho biểu đồ: car sales tăng, tea consumption giảm."
+        ],
+        "B": [
+          "(Chính phủ) Viết câu introduction 'It is often argued that…' về chi tiêu công cho thám hiểm không gian.",
+          "(Việc làm) Viết câu thesis 'This essay will argue that…' về làm việc từ xa.",
+          "(Giáo dục) Viết câu 'The main reason why… is that…' giải thích vì sao học phí đại học tăng.",
+          "(Truyền thông) Viết câu dùng 'What…' làm chủ ngữ về vai trò thật sự của quảng cáo.",
+          "(Tội phạm) Viết câu overview 'It is clear that…': tỉ lệ tội phạm giảm khi giáo dục được cải thiện."
+        ]
+      },
+      "answers": {
+        "A": [
+          "It is often argued that governments should ban private cars in city centres.",
+          "Gợi ý: This essay will argue that the benefits of remote work outweigh its drawbacks.",
+          "The reason why prices rise is that demand is high.",
+          "What technology improves is education. (hoặc: What matters is that technology improves education.)",
+          "Gợi ý: Overall, it is clear that car sales rose while tea consumption declined over the period."
+        ],
+        "B": [
+          "It is often argued that governments should spend more on space exploration than on domestic issues.",
+          "This essay will argue that remote work benefits both employees and employers.",
+          "The main reason why university fees are rising is that public funding for higher education has fallen.",
+          "What advertising really does is shape consumer desires rather than simply inform people.",
+          "It is clear that crime rates tend to fall as access to education improves."
+        ]
+      }
+    },
+    {
+      "id": "relative_clause",
+      "number": 3,
+      "title": "Mệnh đề quan hệ (Relative Clauses)",
+      "use_for": "Task 2 (Topic sentence, Example) · Task 1 (Comparison)",
+      "why": "Mệnh đề quan hệ thêm thông tin cho danh từ một cách gọn gàng, tăng độ phức của câu. Task 2 dùng ở câu chủ đề và ví dụ; Task 1 dùng để nối vế so sánh mà không lặp danh từ.",
+      "formulas": [
+        "N + who / which / that + V ... (KHÔNG phẩy) — defining – xác định danh từ",
+        "N, who / which, ... (CÓ phẩy) — non-defining – thông tin thêm",
+        "Clause, which + V ... — 'which' bổ nghĩa cho CẢ mệnh đề trước — rất hay cho Task 2",
+        "N + where / when / whose + ... — nơi chốn / thời gian / sở hữu"
+      ],
+      "warning": "Lưu ý: who = người · which = vật · that = cả hai (chỉ dùng trong mệnh đề defining). Mệnh đề non-defining (có phẩy) KHÔNG dùng 'that'. Không lặp lại chủ ngữ/tân ngữ đã được đại từ quan hệ thay thế.",
+      "examples": [
+        "Students who study abroad often gain valuable independence. [file 08 – Nhóm B #7]",
+        "Many families own two cars, which worsens urban congestion. [file 08 – Nhóm B #8 ('which' bổ nghĩa cả câu)]",
+        "...the number of factories in Japan, which witnessed a dramatic increase to 120,000 in 2010... [file 08 – Task 1 Comparison #2]"
+      ],
+      "common_mistakes": [
+        "Students which study abroad... → ✓ Students who study abroad... (người → dùng 'who')",
+        "Many families own two cars, that worsens congestion. → ✓ ..., which worsens congestion. (non-defining không dùng 'that')",
+        "The book which I read it was long. → ✓ The book which I read was long. ('which' đã thay 'it' → bỏ 'it')"
+      ],
+      "exercises": {
+        "A": [
+          "Nối bằng mệnh đề quan hệ: Students gain independence. / They study abroad.",
+          "Dùng 'which' bổ nghĩa cả câu: Many families own two cars. / This worsens congestion.",
+          "Sửa lỗi: People who they exercise regularly live longer.",
+          "Điền who/which/whose: A country ______ economy relies on tourism is vulnerable to crises.",
+          "Rút gọn vế so sánh Task 1 dùng 'which': The figure for Japan rose to 120,000. / Korea had only 12,000."
+        ],
+        "B": [
+          "(Giáo dục) Viết câu chủ đề dùng defining clause (who) về học sinh học ngoại ngữ từ sớm.",
+          "(Môi trường) Viết câu dùng 'which' bổ nghĩa cả câu về việc lạm dụng đồ nhựa dùng một lần.",
+          "(Việc làm) Viết câu dùng 'whose' về công ty có văn hoá cân bằng công việc–cuộc sống.",
+          "(Thành thị) Viết câu dùng 'where' về thành phố thiếu không gian xanh.",
+          "(Công nghệ) Viết câu ví dụ dùng non-defining clause về một quốc gia/công ty cụ thể."
+        ]
+      },
+      "answers": {
+        "A": [
+          "Students who study abroad gain independence.",
+          "Many families own two cars, which worsens congestion.",
+          "People who exercise regularly live longer. (bỏ 'they')",
+          "whose",
+          "Gợi ý: The figure for Japan rose to 120,000, exceeding that for Korea, which had only 12,000."
+        ],
+        "B": [
+          "Children who learn a second language early tend to develop stronger cognitive skills.",
+          "Many households rely heavily on single-use plastic, which pollutes the oceans.",
+          "Companies whose culture values work-life balance often retain their staff longer.",
+          "Cities where green spaces are scarce tend to have higher levels of stress.",
+          "Estonia, which has fully digitised its public services, is often cited as a model of e-government."
+        ]
+      }
+    },
+    {
+      "id": "conditionals",
+      "number": 4,
+      "title": "Câu điều kiện (Conditionals)",
+      "use_for": "Task 2 (Problem–Solution, Opinion)",
+      "why": "Task 2 dùng câu điều kiện để đưa giải pháp và giả định. Cấu trúc 'Unless X, Y will…' đặc biệt mạnh cho dạng problem–solution vì nêu được hậu quả nếu không hành động.",
+      "formulas": [
+        "Type 1: If + S + V(hiện tại), S + will + V. — điều kiện có thật ở tương lai — hay dùng nhất cho giải pháp",
+        "Type 2: If + S + V(quá khứ), S + would + V. — giả định trái thực tế hiện tại",
+        "Unless + S + V, S + will + V. — Unless = If ... not",
+        "Provided that / As long as + S + V, ... — 'miễn là'"
+      ],
+      "warning": "Lưu ý: KHÔNG dùng 'will' trong mệnh đề 'if'. Ở Type 2 văn học thuật nên dùng 'were' cho mọi ngôi (If I were…). 'Unless' đã mang nghĩa phủ định → không thêm 'not'.",
+      "examples": [
+        "Unless governments act now, pollution will continue to rise. [file 08 – Nhóm B #6]",
+        "If cities invested in cycling lanes, traffic congestion would decrease significantly. [Type 2 – giả định]",
+        "As long as fossil fuels remain cheap, renewable energy will struggle to compete. ['miễn là']"
+      ],
+      "common_mistakes": [
+        "If it will rain, the match will be cancelled. → ✓ If it rains, the match will be cancelled. (mệnh đề 'if' không dùng 'will')",
+        "Unless you don't study, you will fail. → ✓ Unless you study, you will fail. (Unless đã phủ định → bỏ 'don't')",
+        "If I was rich, I would travel. → ✓ If I were rich, I would travel. (Type 2 học thuật dùng 'were')"
+      ],
+      "exercises": {
+        "A": [
+          "Viết câu giải pháp Type 1: governments / invest in housing / prices / fall.",
+          "Đổi sang 'Unless': If governments do not act, pollution will rise.",
+          "Sửa lỗi: If the policy will be introduced, traffic will decrease.",
+          "Viết câu Type 2 (giả định): cities / have more parks / residents / be healthier.",
+          "Điền: ______ (As long as / Unless) renewable energy stays expensive, coal will dominate."
+        ],
+        "B": [
+          "(Môi trường) Viết câu giải pháp Type 1 dùng 'If' về giảm rác thải sinh hoạt.",
+          "(Giao thông) Viết câu dùng 'Unless' về ùn tắc đô thị.",
+          "(Giáo dục) Viết câu Type 2 (giả định) về việc miễn học phí đại học.",
+          "(Y tế) Viết câu dùng 'As long as/Provided that' về phòng bệnh mãn tính.",
+          "(Kinh tế) Viết câu Type 1 (giải pháp) về thất nghiệp thanh niên."
+        ]
+      },
+      "answers": {
+        "A": [
+          "If governments invest in housing, prices will fall.",
+          "Unless governments act, pollution will rise.",
+          "If the policy is introduced, traffic will decrease.",
+          "If cities had more parks, residents would be healthier.",
+          "As long as"
+        ],
+        "B": [
+          "If governments impose stricter recycling laws, household waste will decrease significantly.",
+          "Unless cities expand public transport, traffic congestion will keep worsening.",
+          "If university education were free, more students from low-income families would attend.",
+          "As long as people maintain a healthy diet, the risk of chronic disease remains low.",
+          "If the government invests in vocational training, youth unemployment will fall."
+        ]
+      }
+    },
+    {
+      "id": "gerund_infinitive",
+      "number": 5,
+      "title": "Danh động từ và Động từ nguyên mẫu (Gerund vs Infinitive)",
+      "use_for": "Task 2 (Cause–Solution) · mọi câu có 2 động từ liền nhau",
+      "why": "Đây là lỗi chính xác động từ rất phổ biến. Task 2 dùng liên tục ở phần giải pháp: 'addressed by V-ing', 'solution would be to V', 'aim to V', 'succeed in V-ing'. Sai dạng này bị trừ điểm GRA dù ý đúng.",
+      "formulas": [
+        "V + to-inf: want, need, decide, aim, hope, plan, tend, fail, refuse.",
+        "V + V-ing: enjoy, avoid, consider, suggest, involve, recommend, keep, risk.",
+        "Giới từ + V-ing (LUÔN LUÔN): by, in, of, about, without, capable of... — 'by investing', 'capable of reducing'",
+        "to + V chỉ mục đích ('để làm gì'). — 'to reduce poverty'"
+      ],
+      "warning": "Lưu ý: Sau giới từ luôn là V-ing. Một số động từ đổi nghĩa: 'stop to do' (dừng lại để làm) ≠ 'stop doing' (ngừng làm); 'remember to do' (nhớ sẽ làm) ≠ 'remember doing' (nhớ đã làm).",
+      "examples": [
+        "This problem could be addressed by investing in affordable public housing. [file 08 – Cause–Solution #2 (giới từ 'by' + V-ing)]",
+        "One effective solution would be to impose higher taxes on private vehicles. [file 08 – Cause–Solution #3 (to + V)]",
+        "By investing in education, governments can reduce long-term poverty. [file 08 – Nhóm C #11]"
+      ],
+      "common_mistakes": [
+        "This can be solved by invest in housing. → ✓ ...by investing in housing. (sau giới từ 'by' → V-ing)",
+        "The government suggested to raise taxes. → ✓ The government suggested raising taxes. ('suggest' + V-ing)",
+        "We should avoid to use plastic. → ✓ We should avoid using plastic. ('avoid' + V-ing)"
+      ],
+      "exercises": {
+        "A": [
+          "Chia dạng đúng: The problem can be tackled by (invest) ______ in renewable energy.",
+          "Chia dạng đúng: One solution would be (impose) ______ a carbon tax.",
+          "Sửa lỗi: The city decided banning cars in the centre.",
+          "Chia dạng đúng: Governments should avoid (subsidise) ______ fossil fuels.",
+          "Viết 1 câu giải pháp dùng 'by + V-ing' cho vấn đề ô nhiễm không khí."
+        ],
+        "B": [
+          "(Môi trường) Viết câu giải pháp dùng 'by + V-ing' về giảm khí thải carbon.",
+          "(Sức khoẻ) Viết câu dùng 'avoid + V-ing' về một thói quen có hại.",
+          "(Giáo dục) Viết câu dùng 'aim to + V' về mục tiêu của nhà trường.",
+          "(Công nghệ) Viết câu dùng 'One solution would be to + V' về nghiện điện thoại.",
+          "(Việc làm) Viết câu dùng 'capable of + V-ing' hoặc 'succeed in + V-ing'."
+        ]
+      },
+      "answers": {
+        "A": [
+          "investing",
+          "to impose",
+          "The city decided to ban cars in the centre.",
+          "subsidising",
+          "Gợi ý: Air pollution can be reduced by promoting public transport and limiting private car use."
+        ],
+        "B": [
+          "Carbon emissions can be cut by promoting renewable energy and improving public transport.",
+          "People should avoid consuming excessive sugar to protect their long-term health.",
+          "Schools should aim to develop critical thinking rather than encourage rote memorisation.",
+          "One solution would be to limit screen time through built-in app restrictions.",
+          "Employees who are capable of adapting to new technology tend to advance faster in their careers."
+        ]
+      }
+    },
+    {
+      "id": "parallelism",
+      "number": 6,
+      "title": "Cấu trúc song hành (Parallel Structure)",
+      "use_for": "Task 2 (liệt kê lý do/giải pháp) · Task 1 (Grouping / Overview)",
+      "why": "Cấu trúc song hành làm câu văn cân đối, mạch lạc và sang (band 7 Coherence). Khi liệt kê nhiều nguyên nhân/giải pháp, tất cả phải cùng dạng ngữ pháp. Task 1 dùng khi liệt kê số liệu ('respectively').",
+      "formulas": [
+        "A, B, and C — ba thành phần cùng dạng ngữ pháp. — N–N–N, hoặc V-ing–V-ing–V-ing, hoặc to V–to V–to V",
+        "not only + X but also + Y (X, Y cùng dạng) — cặp tương liên",
+        "both + X and + Y · either + X or + Y · neither + X nor + Y — hai vế song song"
+      ],
+      "warning": "Lưu ý: Quy tắc vàng: những gì nối bằng 'and / or / but' hoặc cặp tương liên phải CÙNG dạng — cùng là danh từ, cùng V-ing, cùng to-V, hoặc cùng tính từ.",
+      "examples": [
+        "Governments should invest in education, improve healthcare, and reduce inequality. [ba động từ nguyên mẫu song song]",
+        "The most popular activity was reading, followed by gaming and cooking, at 40%, 25% and 15% respectively. [file 08 – Task 1 Grouping #3]",
+        "Remote work is not only cheaper but also more flexible. [not only + adj ... but also + adj]"
+      ],
+      "common_mistakes": [
+        "She likes swimming and to run. → ✓ She likes swimming and running. (cùng dạng V-ing)",
+        "Governments should invest in education, improving healthcare, and to reduce inequality. → ✓ ...invest in education, improve healthcare, and reduce inequality. (ba vế cùng dạng nguyên mẫu)",
+        "It is not only cheap but also it saves time. → ✓ It is not only cheap but also time-saving. (hai vế lệch: adj vs mệnh đề → sửa cho cân)"
+      ],
+      "exercises": {
+        "A": [
+          "Sửa cho song hành: The course improves reading, to write, and speaking skills.",
+          "Sửa cho song hành: Exercise makes people healthier, happy, and gives energy.",
+          "Hoàn thành: Renewable energy is not only clean ______ (but also…).",
+          "Viết 1 câu liệt kê 3 giải pháp (cùng dạng động từ) cho ùn tắc giao thông.",
+          "Sửa lỗi Task 1: reading was the top activity, followed by to game and cook."
+        ],
+        "B": [
+          "(Chính phủ) Viết câu liệt kê 3 giải pháp (3 động từ cùng dạng) cho vấn đề ô nhiễm.",
+          "(Giáo dục) Viết câu dùng 'not only… but also…' về lợi ích của việc đọc sách.",
+          "(Sức khoẻ) Viết câu liệt kê 3 lợi ích của tập thể dục (3 danh từ song song).",
+          "(Du lịch) Viết câu dùng 'both… and…' về lợi ích của du lịch.",
+          "(Công nghệ) Viết câu liệt kê 3 kỹ năng số cần dạy ở trường (song song)."
+        ]
+      },
+      "answers": {
+        "A": [
+          "The course improves reading, writing, and speaking skills.",
+          "Exercise makes people healthier, happier, and more energetic. (ba tính từ so sánh song song)",
+          "Gợi ý: Renewable energy is not only clean but also increasingly affordable.",
+          "Gợi ý: Cities can reduce congestion by expanding public transport, building cycle lanes, and limiting private cars. (ba V-ing sau 'by')",
+          "reading was the top activity, followed by gaming and cooking."
+        ],
+        "B": [
+          "Governments can reduce pollution by regulating factories, expanding green energy, and encouraging public transport.",
+          "Reading not only broadens knowledge but also improves concentration.",
+          "Regular exercise brings physical strength, mental clarity, and emotional stability.",
+          "Tourism benefits both local economies and cultural exchange.",
+          "Schools should teach coding, data literacy, and online safety."
+        ]
+      }
+    },
+    {
+      "id": "participle_phrases",
+      "number": 7,
+      "title": "Phân từ (rút gọn mệnh đề) (Present & Past Participles)",
+      "use_for": "Task 2 (mở đầu câu, nêu kết quả) · Task 1 (nối vế so sánh, process)",
+      "why": "Phân từ giúp rút gọn mệnh đề thành câu ngắn gọn, học thuật — dấu hiệu band 7+. Task 1 dùng để nối vế xu hướng ('exceeding the figure for…'); Task 2 dùng ở đầu câu hoặc để nêu kết quả ('thereby slowing…').",
+      "formulas": [
+        "V-ing, S + V. (present participle = chủ động) — 'Facing rising costs, students...' = Because they face...",
+        "V-ed/p.p., S + V. (past participle = bị động) — 'Built in 1990, the bridge...' = Because it was built...",
+        "Clause, thereby / thus + V-ing. — nêu kết quả – 'nhờ đó…'",
+        "N, V-ing / p.p. ... (rút gọn mệnh đề quan hệ) — 'the figure, exceeding that of...' · 'coffee, produced in Brazil...'"
+      ],
+      "warning": "Lưu ý: QUAN TRỌNG: chủ ngữ của phân từ phải TRÙNG với chủ ngữ của mệnh đề chính (nếu lệch = 'dangling modifier', lỗi nặng). Dùng V-ing khi nghĩa chủ động, p.p. khi nghĩa bị động.",
+      "examples": [
+        "Facing rising costs, many students choose local universities. [file 08 – Nhóm C #9]",
+        "Renewable energy cuts emissions, thereby slowing climate change. [file 08 – Nhóm C #10]",
+        "...Japan went through a period of dramatic increase to 120,000 in 2010, exceeding the number in Korea. [file 08 – Task 1 Comparison #3]"
+      ],
+      "common_mistakes": [
+        "Facing rising costs, the decision was made to study locally. → ✓ Facing rising costs, students decided to study locally. (dangling: 'the decision' không thể 'face costs')",
+        "Building in 1990, the bridge is now unsafe. → ✓ Built in 1990, the bridge is now unsafe. (nghĩa bị động → past participle 'Built')",
+        "The report writing by experts is reliable. → ✓ The report written by experts is reliable. (bị động → 'written')"
+      ],
+      "exercises": {
+        "A": [
+          "Rút gọn dùng V-ing: Because they face high fees, many students study locally.",
+          "Rút gọn dùng p.p.: The policy, which was introduced in 2020, reduced traffic.",
+          "Nối bằng 'thereby + V-ing': Solar power cuts costs. / It boosts adoption.",
+          "Sửa dangling: Walking to school, the rain started to fall.",
+          "Rút gọn vế so sánh Task 1 dùng V-ing: Japan's figure rose to 120,000. / It exceeded Korea's."
+        ],
+        "B": [
+          "(Giáo dục) Viết câu mở đầu bằng present participle (V-ing): học sinh đối mặt chi phí sinh hoạt.",
+          "(Môi trường) Viết câu dùng 'thereby + V-ing' nêu kết quả của năng lượng tái tạo.",
+          "(Thành thị) Viết câu mở đầu bằng past participle (p.p.) về một chính sách/công trình.",
+          "(Công nghệ) Viết câu rút gọn mệnh đề quan hệ dùng V-ing hoặc p.p.",
+          "(Task 1) Viết câu nối vế xu hướng dùng V-ing (accounting for / reaching / exceeding…)."
+        ]
+      },
+      "answers": {
+        "A": [
+          "Facing high fees, many students study locally.",
+          "Introduced in 2020, the policy reduced traffic.",
+          "Solar power cuts costs, thereby boosting adoption.",
+          "Walking to school, I felt the rain start to fall. (thêm chủ ngữ 'I' hợp với 'walking')",
+          "Gợi ý: Japan's figure rose to 120,000, exceeding Korea's."
+        ],
+        "B": [
+          "Facing rising living costs, many young people delay moving out of their family homes.",
+          "Renewable energy reduces dependence on fossil fuels, thereby lowering carbon emissions.",
+          "Introduced in 2019, the congestion charge significantly reduced traffic in the city centre.",
+          "Companies investing in employee training tend to retain their staff longer. (V-ing) / Goods manufactured overseas are often cheaper but less durable. (p.p.)",
+          "Car sales rose sharply to 5 million units in 2020, accounting for nearly half of the market."
+        ]
+      }
+    },
+    {
+      "id": "inversion",
+      "number": 8,
+      "title": "Đảo ngữ (Inversion)",
+      "use_for": "Task 2 (nhấn mạnh trong thân bài hoặc kết luận)",
+      "why": "Đảo ngữ dùng để nhấn mạnh, là dấu hiệu band 7–8 ở tiêu chí GRA. Chỉ cần dùng đúng 1–2 lần trong bài là đủ gây ấn tượng — không nên lạm dụng vì sẽ mất tự nhiên.",
+      "formulas": [
+        "Not only + trợ ĐT + S + V, but + S + also + V. — 'Not only does exercise..., but it also...'",
+        "Never / Rarely / Seldom / Little + trợ ĐT + S + V. — trạng từ phủ định đầu câu → đảo trợ động từ",
+        "No sooner + had + S + p.p. + than + S + V. — 'ngay khi… thì…'",
+        "Only by + V-ing + trợ ĐT + S + V. — 'Only by investing can we...'"
+      ],
+      "warning": "Lưu ý: Khi trạng từ/cụm phủ định đứng đầu câu, phải MƯỢN trợ động từ (do/does/did/have/can…) và đảo lên trước chủ ngữ — giống dạng câu hỏi. Không đảo động từ thường.",
+      "examples": [
+        "Not only does exercise improve health, but it also boosts mental wellbeing. [file 08 – Nhóm A #3]",
+        "Rarely do governments invest enough in preventive healthcare. [trạng từ phủ định + đảo trợ ĐT]",
+        "Only by investing in education can societies reduce poverty in the long term. ['Only by…' + đảo]"
+      ],
+      "common_mistakes": [
+        "Not only exercise improves health, but also... → ✓ Not only does exercise improve health, but it also... (phải mượn 'does' và đảo lên trước chủ ngữ)",
+        "Never I have seen such progress. → ✓ Never have I seen such progress. (đảo trợ động từ 'have' lên trước 'I')",
+        "Only by act now we can solve this. → ✓ Only by acting now can we solve this. (sau 'by' dùng V-ing + đảo 'can we')"
+      ],
+      "exercises": {
+        "A": [
+          "Đảo ngữ với 'Not only': Exercise improves health. It also reduces stress.",
+          "Đảo ngữ với 'Rarely': Governments rarely invest enough in rural areas.",
+          "Sửa lỗi: Never I have seen such rapid change.",
+          "Viết lại dùng 'Only by…': We can solve this only by acting now.",
+          "Viết 1 câu đảo ngữ 'Not only…but also…' cho lợi ích của giao thông công cộng."
+        ],
+        "B": [
+          "(Sức khoẻ) Viết câu 'Not only… but also…' về lợi ích của tập thể dục.",
+          "(Môi trường) Viết câu dùng 'Only by + V-ing… can…' về bảo vệ môi trường.",
+          "(Giáo dục) Viết câu dùng 'Rarely/Seldom' về đầu tư cho vùng nông thôn.",
+          "(Công nghệ) Viết câu 'Not only does… but…' về trí tuệ nhân tạo (AI).",
+          "(Kinh tế) Viết câu dùng 'Only when…' về xoá đói giảm nghèo."
+        ]
+      },
+      "answers": {
+        "A": [
+          "Not only does exercise improve health, but it also reduces stress.",
+          "Rarely do governments invest enough in rural areas.",
+          "Never have I seen such rapid change.",
+          "Only by acting now can we solve this.",
+          "Gợi ý: Not only does public transport ease congestion, but it also cuts carbon emissions."
+        ],
+        "B": [
+          "Not only does regular exercise strengthen the body, but it also improves mental health.",
+          "Only by reducing carbon emissions can we slow down climate change.",
+          "Rarely do rural areas receive the same investment as major cities.",
+          "Not only does AI increase efficiency, but it also raises new ethical challenges.",
+          "Only when education becomes accessible to all can poverty be truly reduced."
+        ]
+      }
+    }
+  ]
+}
