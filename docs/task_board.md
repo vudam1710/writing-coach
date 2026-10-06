@@ -12,12 +12,16 @@
 - [ ] Chọn wordlist CEFR + kiểm tra license
 
 ## Giai đoạn 1 — Lõi phân tích (mốc `v0.1`)
-- [ ] `core/schema.py` (Pydantic) ← **bắt đầu ở đây**
-- [ ] `core/metrics.py` + unit test
-- [ ] `prompts/ielts_v1.md` (4 khía cạnh, xếp hạng, song ngữ, ≤4 issue, 1 câu rewrite)
-- [ ] `core/analyzer.py` (gọi API, validate, retry)
+- [x] `core/schema.py` (Pydantic)
+- [x] `core/metrics.py` + unit test (chưa có CEFR profile)
+- [x] `prompts/ielts_v1.md` (4 khía cạnh, xếp hạng, song ngữ, ≤4 issue, 1 câu rewrite)
+- [x] `core/analyzer.py` (gọi API, validate, retry 1 lần) — chờ chạy thật
 - [ ] `core/level.py` (CEFR + lọc i+1) — phụ thuộc wordlist
-- [ ] `cli.py` chạy analyzer + band; thử 3–5 bài dev, đọc và chỉnh prompt
+- [x] `cli.py` chạy analyzer + band (v1 chạy OK trên sample_02)
+- [x] `prompts/ielts_v2.md` sửa 6 lỗi đọc tay của v1
+- [x] `evaluation/render.py` + `run_eval.py` (file .md để đọc, review_items.csv để review, summary.csv)
+- [ ] Dán 3 bài vào `data/gold/dev/` → `run_eval.py --tag v2` → review CSV (user)
+- [ ] Đọc review → prompt v3 nếu cần
 
 ## Để sau
 Chế độ Other · Google login/whitelist · Google Sheets · CI GitHub Actions · taxonomy ngữ pháp
