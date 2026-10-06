@@ -22,7 +22,9 @@
 - [x] `evaluation/render.py` + `run_eval.py` (file .md để đọc, review_items.csv để review, summary.csv)
 - [x] Dán 3 bài vào `data/gold/dev/` → `run_eval.py --tag v2` → review CSV (✓ 81%)
 - [x] v3: prompt + schema (hints, alternatives, next_structures, summary.structure) + code (duplicate theo cặp, question_quotes)
-- [ ] `run_eval.py --tag v3` → review → so với v2 (user)
+- [x] `run_eval.py --tag v3` → review (grammar ✗ 5/8 → cần verifier)
+- [x] v4: verifier (lượt gọi 2) + lọc rewrite trùng + next_structures ≥3 + next_vocab ≥4
+- [ ] `run_eval.py --tag v4` → review (chấm thêm dòng N, W, X) (user)
 
 ## Để sau
 Chế độ Other · Google login/whitelist · Google Sheets · CI GitHub Actions · taxonomy ngữ pháp

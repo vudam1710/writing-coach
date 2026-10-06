@@ -10,7 +10,9 @@ ASPECTS = [("ideas", "I", "1. Ý tưởng & lập luận"), ("organization", "O"
 # Cột giáo viên điền: verdict (✓ đúng & hữu ích / ~ đúng nhưng cần chỉnh / ✗ sai hoặc không có thật),
 # problem (fake / duplicate / too_hard / severity / rewrite_off / band / other), comment, should_be.
 # Thêm dòng item_id = M1, M2... cho vấn đề quan trọng mà tool BỎ SÓT.
-# item_id N1, N2 = cấu trúc nên học tiếp (grammar.next_structures). Cột extras = hints_vi / alternatives_en.
+# item_id N1.. = cấu trúc nên học (cột severity = new/combination) · W1.. = từ vựng nên học
+# X1.. = lỗi bị LOẠI (code hoặc verifier) → GV chấm: ✓ = loại đúng, ✗ = lỗi thật bị loại nhầm
+# Cột extras = hints_vi / alternatives_en / cờ cấu trúc bài / lý do loại. Issue bị verifier đổi tên có "[đổi tên]" ở extras.
 ITEM_COLUMNS = ["tag", "essay_id", "item_id", "aspect", "severity", "ease", "title_vi", "quote_en",
                 "original_en", "improved_en", "learn_vi", "learn_cefr", "extras",
                 "verdict", "problem", "comment", "should_be"]
@@ -39,7 +41,21 @@ def review_items(tag: str, essay_id: str, r: dict) -> list[dict]:
                          "extras": " | ".join(i.get("hints_vi", []) + i.get("alternatives_en", []))})
     for n, s in enumerate(fb["grammar"].get("next_structures", []), 1):
         rows.append({**base, "item_id": f"N{n}", "aspect": "next_structure", "title_vi": s["name_vi"],
+                     "severity": s.get("kind", ""),
                      "original_en": s["original_en"], "improved_en": s["example_en"], "learn_cefr": s["cefr"]})
+    for n, w in enumerate(fb["vocabulary"].get("next_vocab", []), 1):
+        rows.append({**base, "item_id": f"W{n}", "aspect": "next_vocab", "title_vi": w["phrase_en"],
+                     "learn_vi": w["meaning_vi"], "learn_cefr": w["cefr"],
+                     "original_en": w["original_en"], "improved_en": w["example_en"]})
+    dropped = r.get("self_rejected", []) + r.get("verifier_rejected", [])
+    for n, d in enumerate(dropped, 1):
+        rows.append({**base, "item_id": f"X{n}", "aspect": f"rejected:{d['aspect']}", "title_vi": d["title_vi"],
+                     "quote_en": d["quote_en"], "extras": d["reason"]})
+    renamed = {d["title_vi"]: d for d in r.get("verifier_relabeled", [])}
+    for row in rows:
+        if row["item_id"][:1] in "VG" and row.get("title_vi") in renamed:
+            d = renamed[row["title_vi"]]
+            row["extras"] = f"[đổi tên] cũ: {d['old_title_vi']} — {d['reason']}" + (" | " + row["extras"] if row.get("extras") else "")
     for n, p in enumerate(fb["ideas"].get("perspectives", []), 1):
         rows.append({**base, "item_id": f"P{n}", "aspect": "perspective", "title_vi": p["angle_vi"],
                      "improved_en": p["outline_en"]})
@@ -82,11 +98,21 @@ def render_markdown(tag: str, essay_id: str, r: dict) -> str:
                 out.append("- **Có thể dùng thay:** " + ", ".join(i["alternatives_en"]))
         if key == "grammar" and a.get("next_structures"):
             out += ["", "**Cấu trúc nên học tiếp:**"]
-            out += [f"- [N{n}] {s['name_vi']} ({s['cefr']}): ~~{s['original_en']}~~ → {s['example_en']}"
+            out += [f"- [N{n}] {s['name_vi']} · {s.get('kind', '')} ({s['cefr']}): ~~{s['original_en']}~~ → {s['example_en']}"
                     for n, s in enumerate(a["next_structures"], 1)]
+        if key == "vocabulary" and a.get("next_vocab"):
+            out += ["", "**Từ vựng nên học:**"]
+            out += [f"- [W{n}] **{w['phrase_en']}** — {w['meaning_vi']} ({w['cefr']}): {w['example_en']}"
+                    for n, w in enumerate(a["next_vocab"], 1)]
         if key == "ideas" and a.get("perspectives"):
             out += ["", "**Mở rộng góc nhìn (cho bài sau):**"]
             out += [f"- [P{n}] {p['angle_vi']}: {p['outline_en']}" for n, p in enumerate(a["perspectives"], 1)]
+    dropped = r.get("self_rejected", []) + r.get("verifier_rejected", [])
+    if dropped or r.get("verifier_relabeled"):
+        out += ["", "---", "## Đã lọc (chỉ để review, học sinh không thấy)"]
+        out += [f"- [X{n}] ✂ {d['aspect']}: {d['title_vi']} — _{d['reason']}_" for n, d in enumerate(dropped, 1)]
+        out += [f"- ✎ {d['aspect']}: {d['old_title_vi']} → **{d['title_vi']}** — _{d['reason']}_"
+                for d in r.get("verifier_relabeled", [])]
     return "\n".join(out) + "\n"
 
 

@@ -21,10 +21,12 @@ VALID = {
               "paragraph_notes": [{"paragraph": 2, "developed": True, "note_vi": "Đủ lý do + ví dụ"}],
               "perspectives": [{"angle_vi": "kinh tế", "outline_en": "Cities attract investment."}]},
     "organization": {"strength_vi": "...", "issues": [_issue()]},
-    "vocabulary": {"strength_vi": "...", "issues": []},
+    "vocabulary": {"strength_vi": "...", "issues": [],
+                   "next_vocab": [{"phrase_en": f"p{n}", "meaning_vi": "m", "cefr": "B1",
+                                   "original_en": "a", "example_en": "b"} for n in range(4)]},
     "grammar": {"strength_vi": "...", "issues": [_issue()],
-                "next_structures": [{"name_vi": "mệnh đề quan hệ (which)", "cefr": "B1",
-                                     "original_en": "a", "example_en": "b"}]},
+                "next_structures": [{"name_vi": f"cấu trúc {n}", "kind": "new", "cefr": "B1",
+                                     "original_en": "a", "example_en": "b"} for n in range(3)]},
     "ielts": {"TR": 6.0, "CC": 6.5, "LR": 6.0, "GRA": 5.5, "next_step_vi": "..."},
 }
 
@@ -68,7 +70,11 @@ def test_invalid(path, value):
 
 def test_v3_limits():
     data = copy.deepcopy(VALID)
-    data["grammar"]["next_structures"] *= 3                       # 3 > tối đa 2
+    data["grammar"]["next_structures"] = data["grammar"]["next_structures"][:2]   # 2 < tối thiểu 3
+    with pytest.raises(ValidationError):
+        Feedback.model_validate(data)
+    data = copy.deepcopy(VALID)
+    data["vocabulary"]["next_vocab"] = data["vocabulary"]["next_vocab"][:3]       # 3 < tối thiểu 4
     with pytest.raises(ValidationError):
         Feedback.model_validate(data)
     data = copy.deepcopy(VALID)

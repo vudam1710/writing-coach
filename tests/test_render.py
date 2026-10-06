@@ -8,13 +8,17 @@ def _issue(q):
             "self_practice_vi": "s"}
 
 
-R = {"overall": 6.5, "warnings": [], "feedback": {
+R = {"overall": 6.5, "warnings": [],
+     "self_rejected": [{"aspect": "grammar", "title_vi": "bịa", "quote_en": "q", "reason": "identical_rewrite"}],
+     "feedback": {
     "summary": {"overall_vi": "ok", "focus_first_vi": ["a"]},
     "level": {"vocab_cefr": "B1", "grammar_cefr": "B2"},
     "ideas": {"strength_vi": "s", "issues": [], "paragraph_notes": [], "perspectives": [
         {"angle_vi": "kinh tế", "outline_en": "jobs"}]},
     "organization": {"strength_vi": "s", "issues": []},
-    "vocabulary": {"strength_vi": "s", "issues": [_issue("Same quote.")]},
+    "vocabulary": {"strength_vi": "s", "issues": [_issue("Same quote.")],
+                   "next_vocab": [{"phrase_en": "gain experience in", "meaning_vi": "m", "cefr": "B1",
+                                   "original_en": "a", "example_en": "b"}]},
     "grammar": {"strength_vi": "s", "issues": [_issue("same quote. "), _issue("Other.")],
                 "next_structures": [{"name_vi": "which", "cefr": "B1", "original_en": "a", "example_en": "b"}]},
     "ielts": {"TR": 6.0, "CC": 6.5, "LR": 6.0, "GRA": 6.5, "next_step_vi": "n"}}}
@@ -22,7 +26,7 @@ R = {"overall": 6.5, "warnings": [], "feedback": {
 
 def test_review_items_ids_and_columns():
     rows = review_items("v2", "e1", R)
-    assert [r["item_id"] for r in rows] == ["B", "L", "S", "V1", "G1", "G2", "N1", "P1"]
+    assert [r["item_id"] for r in rows] == ["B", "L", "S", "V1", "G1", "G2", "N1", "W1", "X1", "P1"]
     assert all(list(r) == ITEM_COLUMNS for r in rows)
 
 

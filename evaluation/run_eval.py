@@ -25,8 +25,9 @@ DEFAULT_DIRS = [ROOT / "data" / "samples", ROOT / "data" / "gold" / "dev"]
 PLACEHOLDER = "<<DÁN"
 SUMMARY_COLUMNS = ["tag", "essay_id", "prompt_version", "status", "TR", "CC", "LR", "GRA", "overall",
                    "vocab_cefr", "grammar_cefr", "n_ideas", "n_organization", "n_vocabulary", "n_grammar",
-                   "n_next_structures", "intro_position", "conclusion", "focused",
-                   "fake_quotes", "question_quotes", "duplicate_quotes", "attempts", "input_tokens", "output_tokens"]
+                   "n_next_structures", "n_next_vocab", "intro_position", "conclusion", "focused",
+                   "self_rejected", "verifier_rejected", "verifier_relabeled",
+                   "fake_quotes", "question_quotes", "duplicate_quotes", "llm_calls", "input_tokens", "output_tokens"]
 
 
 def essay_files(paths: list[Path]) -> list[Path]:
@@ -50,10 +51,13 @@ def summary_row(tag: str, essay_id: str, r: dict) -> dict:
             "vocab_cefr": fb["level"]["vocab_cefr"], "grammar_cefr": fb["level"]["grammar_cefr"],
             **{f"n_{a}": len(fb[a]["issues"]) for a in ["ideas", "organization", "vocabulary", "grammar"]},
             "n_next_structures": len(fb["grammar"].get("next_structures", [])),
+            "n_next_vocab": len(fb["vocabulary"].get("next_vocab", [])),
+            "self_rejected": len(r.get("self_rejected", [])), "verifier_rejected": len(r.get("verifier_rejected", [])),
+            "verifier_relabeled": len(r.get("verifier_relabeled", [])),
             **{k: int(v) for k, v in fb["summary"].get("structure", {}).items()},
             "fake_quotes": len(r["fake_quotes"]), "question_quotes": len(r.get("question_quotes", [])),
             "duplicate_quotes": len(duplicate_quotes(r)),
-            "attempts": r["meta"]["attempts"], "input_tokens": r["meta"]["input_tokens"],
+            "llm_calls": r["meta"].get("llm_calls", r["meta"].get("attempts")), "input_tokens": r["meta"]["input_tokens"],
             "output_tokens": r["meta"]["output_tokens"]}
 
 

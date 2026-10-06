@@ -1,0 +1,6 @@
+﻿tag,essay_id,prompt_version,status,TR,CC,LR,GRA,overall,vocab_cefr,grammar_cefr,n_ideas,n_organization,n_vocabulary,n_grammar,n_next_structures,intro_position,conclusion,focused,fake_quotes,question_quotes,duplicate_quotes,attempts,input_tokens,output_tokens
+v3,sample_01,ielts_v3,ok,5.0,7.0,6.0,6.0,6.0,B1,B1,0,0,3,2,2,1,1,1,0,0,0,1,9367,3089
+v3,sample_02,ielts_v3,ok,6.5,7.0,6.0,6.0,6.5,B1,B1,2,1,3,2,1,1,1,1,0,0,0,2,18980,8785
+v3,dev_01,ielts_v3,ok,5.0,5.0,5.5,6.0,5.5,A2,A2,3,2,2,1,2,0,0,1,0,0,0,1,9239,4426
+v3,dev_02,ielts_v3,ok,5.0,6.0,6.0,6.5,6.0,B1,B1,3,1,2,0,2,1,1,0,0,0,0,1,9322,3996
+v3,dev_03,ielts_v3,ok,5.0,6.0,6.0,5.5,5.5,B1,B1,2,1,3,3,1,0,0,1,0,1,1,1,9272,4257

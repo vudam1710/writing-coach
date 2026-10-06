@@ -12,3 +12,5 @@ Nguồn thiết kế: `docs/design_v0.3.md`. Quyết định cũ: `ielts-writing
 - [2026-10-06] Wordlist CEFR: chưa có; phải kiểm tra license, mặc định gitignore.
 - [2026-10-06] Gold set: bài thật + review giáo viên, chưa có band → gán nhãn band + CEFR; chỉ ở local (`data/gold/`, gitignore).
 - [2026-10-06] Cách làm: Claude viết code từng step, user chạy + commit; mỗi việc = 1 Issue + 1 nhánh + 1 PR; commit có tiền tố (`feat/fix/prompt/eval/docs/test/refactor`).
+- [2026-10-07] **Issue = lỗi thật → chỉ có giới hạn TRÊN; gợi ý học thêm → có giới hạn DƯỚI.** `next_structures` 3–4 (cấu trúc mới hoặc kết hợp mới), `next_vocab` 4–6 cụm từ đầy đủ. Lý do: mỗi bài học sinh đều học thêm được cách diễn đạt + vốn từ, mà không ép model bịa lỗi.
+- [2026-10-07] **Verifier (lượt gọi thứ 2)** kiểm tra chéo lỗi grammar + vocab; fail-open (verifier lỗi → giữ kết quả + cảnh báo). Code lọc rewrite = câu gốc chỉ cho grammar/vocab.

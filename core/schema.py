@@ -74,13 +74,28 @@ class Aspect(_Strict):
 class Structure(_Strict):
     """Cấu trúc nên học tiếp (Range) — gợi ý cả khi bài không có lỗi ngữ pháp."""
     name_vi: str
+    kind: Literal["new", "combination"] = Field(description="new = bài chưa dùng; combination = kết hợp cấu trúc đã biết theo cách mới")
     cefr: CEFR
     original_en: str = Field(description="Câu thật trong bài, trích nguyên văn")
     example_en: str = Field(description="Chính câu đó viết lại với cấu trúc mới")
 
 
 class GrammarAspect(Aspect):
-    next_structures: list[Structure] = Field(default_factory=list, max_length=2)
+    # v4: là GỢI Ý HỌC THÊM (không phải lỗi) → có số tối thiểu, không gây bịa lỗi
+    next_structures: list[Structure] = Field(min_length=3, max_length=4)
+
+
+class VocabItem(_Strict):
+    """Cụm từ nên học thêm — không phải lỗi."""
+    phrase_en: str = Field(description="Cả cụm, kèm động từ/giới từ đi cùng")
+    meaning_vi: str
+    cefr: CEFR
+    original_en: str = Field(description="Câu thật trong bài, trích nguyên văn")
+    example_en: str = Field(description="Chính câu đó viết lại có dùng cụm từ")
+
+
+class VocabAspect(Aspect):
+    next_vocab: list[VocabItem] = Field(min_length=4, max_length=6)
 
 
 class ParagraphNote(_Strict):
@@ -140,7 +155,7 @@ class Feedback(_Strict):
     level: Level
     ideas: IdeasAspect
     organization: Aspect
-    vocabulary: Aspect
+    vocabulary: VocabAspect
     grammar: GrammarAspect
     ielts: IeltsBands | None = None   # chỉ có ở chế độ IELTS
 

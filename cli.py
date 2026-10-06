@@ -33,7 +33,7 @@ def main() -> None:
     print(f"Band: TR {b['TR']} · CC {b['CC']} · LR {b['LR']} · GRA {b['GRA']} → Overall {r['overall']}")
     for w in r["warnings"]:
         print(f"⚠️ {w}")
-    print(f"Tokens: {r['meta']['input_tokens']} in / {r['meta']['output_tokens']} out · attempts {r['meta']['attempts']}")
+    print(f"Tokens: {r['meta']['input_tokens']} in / {r['meta']['output_tokens']} out · LLM calls {r['meta']['llm_calls']}")
 
     out_dir = ROOT / "_scratch" / "results"
     out_dir.mkdir(parents=True, exist_ok=True)
