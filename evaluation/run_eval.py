@@ -25,7 +25,8 @@ DEFAULT_DIRS = [ROOT / "data" / "samples", ROOT / "data" / "gold" / "dev"]
 PLACEHOLDER = "<<DÁN"
 SUMMARY_COLUMNS = ["tag", "essay_id", "prompt_version", "status", "TR", "CC", "LR", "GRA", "overall",
                    "vocab_cefr", "grammar_cefr", "n_ideas", "n_organization", "n_vocabulary", "n_grammar",
-                   "fake_quotes", "duplicate_quotes", "attempts", "input_tokens", "output_tokens"]
+                   "n_next_structures", "intro_position", "conclusion", "focused",
+                   "fake_quotes", "question_quotes", "duplicate_quotes", "attempts", "input_tokens", "output_tokens"]
 
 
 def essay_files(paths: list[Path]) -> list[Path]:
@@ -48,7 +49,10 @@ def summary_row(tag: str, essay_id: str, r: dict) -> dict:
             "TR": b["TR"], "CC": b["CC"], "LR": b["LR"], "GRA": b["GRA"], "overall": r["overall"],
             "vocab_cefr": fb["level"]["vocab_cefr"], "grammar_cefr": fb["level"]["grammar_cefr"],
             **{f"n_{a}": len(fb[a]["issues"]) for a in ["ideas", "organization", "vocabulary", "grammar"]},
-            "fake_quotes": len(r["fake_quotes"]), "duplicate_quotes": len(duplicate_quotes(r)),
+            "n_next_structures": len(fb["grammar"].get("next_structures", [])),
+            **{k: int(v) for k, v in fb["summary"].get("structure", {}).items()},
+            "fake_quotes": len(r["fake_quotes"]), "question_quotes": len(r.get("question_quotes", [])),
+            "duplicate_quotes": len(duplicate_quotes(r)),
             "attempts": r["meta"]["attempts"], "input_tokens": r["meta"]["input_tokens"],
             "output_tokens": r["meta"]["output_tokens"]}
 

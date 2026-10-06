@@ -20,8 +20,9 @@
 - [x] `cli.py` chạy analyzer + band (v1 chạy OK trên sample_02)
 - [x] `prompts/ielts_v2.md` sửa 6 lỗi đọc tay của v1
 - [x] `evaluation/render.py` + `run_eval.py` (file .md để đọc, review_items.csv để review, summary.csv)
-- [ ] Dán 3 bài vào `data/gold/dev/` → `run_eval.py --tag v2` → review CSV (user)
-- [ ] Đọc review → prompt v3 nếu cần
+- [x] Dán 3 bài vào `data/gold/dev/` → `run_eval.py --tag v2` → review CSV (✓ 81%)
+- [x] v3: prompt + schema (hints, alternatives, next_structures, summary.structure) + code (duplicate theo cặp, question_quotes)
+- [ ] `run_eval.py --tag v3` → review → so với v2 (user)
 
 ## Để sau
 Chế độ Other · Google login/whitelist · Google Sheets · CI GitHub Actions · taxonomy ngữ pháp

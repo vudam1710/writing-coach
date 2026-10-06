@@ -13,7 +13,7 @@ from core.metrics import compute, to_prompt_block
 from core.schema import Feedback, tool_schema
 from evaluation.checks import quote_in_essay
 
-PROMPT_VERSION = "ielts_v2"
+PROMPT_VERSION = "ielts_v3"
 PROMPT_PATH = Path(__file__).parent.parent / "prompts" / f"{PROMPT_VERSION}.md"
 MAX_TOKENS = 8000
 
@@ -74,10 +74,15 @@ def analyze(question: str, essay: str, target_band: float | None = None,
     b = feedback.ielts
     overall = overall_band([b.TR, b.CC, b.LR, b.GRA])
 
-    fake_quotes = [q for a in feedback.aspects().values() for i in a.issues for q in i.quotes_en
-                   if not quote_in_essay(q, essay)]
+    quotes = [q for a in feedback.aspects().values() for i in a.issues for q in i.quotes_en]
+    quotes += [s.original_en for s in feedback.grammar.next_structures]
+    missing = [q for q in quotes if not quote_in_essay(q, essay)]
+    question_quotes = [q for q in missing if quote_in_essay(q, question)]   # trích từ đề, không phải từ bài
+    fake_quotes = [q for q in missing if q not in question_quotes]           # không có ở đâu cả = bịa
     if fake_quotes:
         warnings.append(f"{len(fake_quotes)} trích dẫn không khớp nguyên văn bài viết (lớp 1 sẽ đo tỉ lệ này).")
+    if question_quotes:
+        warnings.append(f"{len(question_quotes)} trích dẫn lấy từ đề bài thay vì bài viết.")
 
     return {
         "feedback": feedback.model_dump(),
@@ -85,6 +90,7 @@ def analyze(question: str, essay: str, target_band: float | None = None,
         "metrics": metrics,
         "warnings": warnings,
         "fake_quotes": fake_quotes,
+        "question_quotes": question_quotes,
         "meta": {"prompt_version": PROMPT_VERSION, "model": MODEL, "attempts": len(usages),
                  "input_tokens": sum(u["input_tokens"] for u in usages),
                  "output_tokens": sum(u["output_tokens"] for u in usages)},

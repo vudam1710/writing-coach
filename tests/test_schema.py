@@ -14,14 +14,17 @@ def _issue(sev="medium", ease="medium", title="x"):
 
 
 VALID = {
-    "summary": {"overall_vi": "Bài rõ ý.", "focus_first_vi": ["Phát triển ví dụ ở đoạn 2"]},
+    "summary": {"structure": {"intro_position": True, "conclusion": False, "focused": True},
+                "overall_vi": "Bài rõ ý.", "focus_first_vi": ["Phát triển ví dụ ở đoạn 2"]},
     "level": {"vocab_cefr": "B2", "grammar_cefr": "B1"},
     "ideas": {"strength_vi": "Có quan điểm rõ.", "issues": [],
               "paragraph_notes": [{"paragraph": 2, "developed": True, "note_vi": "Đủ lý do + ví dụ"}],
               "perspectives": [{"angle_vi": "kinh tế", "outline_en": "Cities attract investment."}]},
     "organization": {"strength_vi": "...", "issues": [_issue()]},
     "vocabulary": {"strength_vi": "...", "issues": []},
-    "grammar": {"strength_vi": "...", "issues": [_issue()]},
+    "grammar": {"strength_vi": "...", "issues": [_issue()],
+                "next_structures": [{"name_vi": "mệnh đề quan hệ (which)", "cefr": "B1",
+                                     "original_en": "a", "example_en": "b"}]},
     "ielts": {"TR": 6.0, "CC": 6.5, "LR": 6.0, "GRA": 5.5, "next_step_vi": "..."},
 }
 
@@ -59,6 +62,17 @@ def test_invalid(path, value):
     for k in path[:-1]:
         node = node[k]
     node[path[-1]] = value
+    with pytest.raises(ValidationError):
+        Feedback.model_validate(data)
+
+
+def test_v3_limits():
+    data = copy.deepcopy(VALID)
+    data["grammar"]["next_structures"] *= 3                       # 3 > tối đa 2
+    with pytest.raises(ValidationError):
+        Feedback.model_validate(data)
+    data = copy.deepcopy(VALID)
+    data["vocabulary"]["issues"] = [{**_issue(), "alternatives_en": ["a", "b", "c", "d", "e"]}]
     with pytest.raises(ValidationError):
         Feedback.model_validate(data)
 

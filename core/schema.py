@@ -48,6 +48,11 @@ class Issue(_Strict):
     learn_cefr: CEFR | None = None
     rewrite: Rewrite
     self_practice_vi: str = Field(description="Chỗ khác trong bài người học tự áp dụng")
+    # v3 — theo review v2 của giáo viên
+    hints_vi: list[str] = Field(default_factory=list, max_length=3,
+                                description="CHỈ cho ideas: 2–3 hướng/câu hỏi gợi ý, không đưa sẵn ý")
+    alternatives_en: list[str] = Field(default_factory=list, max_length=4,
+                                       description="CHỈ cho vocabulary: tối đa 4 từ/cụm thay thế, mức i+1")
 
 
 def rank_issues(issues: list[Issue]) -> list[Issue]:
@@ -64,6 +69,18 @@ class Aspect(_Strict):
     def _sort(self):
         self.issues = rank_issues(self.issues)   # không tin thứ tự LLM trả về → code tự xếp
         return self
+
+
+class Structure(_Strict):
+    """Cấu trúc nên học tiếp (Range) — gợi ý cả khi bài không có lỗi ngữ pháp."""
+    name_vi: str
+    cefr: CEFR
+    original_en: str = Field(description="Câu thật trong bài, trích nguyên văn")
+    example_en: str = Field(description="Chính câu đó viết lại với cấu trúc mới")
+
+
+class GrammarAspect(Aspect):
+    next_structures: list[Structure] = Field(default_factory=list, max_length=2)
 
 
 class ParagraphNote(_Strict):
@@ -84,7 +101,14 @@ class IdeasAspect(Aspect):
 
 
 # ---------------------------------------------------------------- tổng hợp, trình độ, band
+class EssayStructure(_Strict):
+    intro_position: bool = Field(description="Có mở bài nêu lại đề + quan điểm")
+    conclusion: bool = Field(description="Có đoạn kết riêng")
+    focused: bool = Field(description="False nếu lan man / lặp ý / lạc đề")
+
+
 class Summary(_Strict):
+    structure: EssayStructure
     overall_vi: str = Field(description="1 câu nhận xét chung")
     focus_first_vi: list[str] = Field(min_length=1, max_length=2)
 
@@ -117,7 +141,7 @@ class Feedback(_Strict):
     ideas: IdeasAspect
     organization: Aspect
     vocabulary: Aspect
-    grammar: Aspect
+    grammar: GrammarAspect
     ielts: IeltsBands | None = None   # chỉ có ở chế độ IELTS
 
     def aspects(self) -> dict[str, Aspect]:
