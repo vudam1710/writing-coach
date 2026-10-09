@@ -48,10 +48,10 @@ def compute_stats(subs: list[dict], feedback: list[dict]) -> dict:
     if f.empty:
         return out
     f = (f.sort_values("created_at").drop_duplicates(["submission_id", "item_id", "tester"], keep="last"))
-    f["part"] = f["item_id"].map(_part)
+    f["Phần"] = f["item_id"].map(_part)
     st_ = f[(f["role"] == "student") & (f["item_id"] != "GENERAL")]
     if not st_.empty:
-        g = st_.groupby("part")
+        g = st_.groupby("Phần")
         out["student"] = pd.DataFrame({
             "👍": g["rating"].apply(lambda x: (x == "up").sum()),
             "👎": g["rating"].apply(lambda x: (x == "down").sum()),
@@ -63,7 +63,8 @@ def compute_stats(subs: list[dict], feedback: list[dict]) -> dict:
         out["student"] = out["student"].sort_values("Tỉ lệ 👍")
     rv = f[(f["role"] == "reviewer") & (f["verdict"].astype(str) != "")]
     if not rv.empty:
-        v = rv.groupby("part")["verdict"].value_counts().unstack(fill_value=0)
+        v = rv.groupby("Phần")["verdict"].value_counts().unstack(fill_value=0)
+        v.columns.name = None
         for c in ("✓", "~", "✗"):
             if c not in v:
                 v[c] = 0
@@ -101,9 +102,11 @@ def render(store) -> None:
     c[0].metric("Tổng số bài", d["n_subs"], f"+{d['n_today']} hôm nay")
     c[1].metric("Người dùng", d["n_users"])
     c[2].metric("Chờ trung bình", f"{d['avg_seconds']:.0f}s" if pd.notna(d["avg_seconds"]) else "—")
-    c[3].metric("Chi phí ước tính", f"${d['cost_usd']:.2f}", f"${d['cost_per_essay']:.3f}/bài", delta_color="off")
+    c[3].metric("Chi phí ước tính", f"${d['cost_usd']:.2f}")
+    # "\$": Streamlit hiểu $...$ là công thức toán → phải escape dấu $ trong markdown/caption
     st.caption(f"Đồng ý lưu bài: {d['consent_rate']:.0%} · Bài lỗi: {d['n_errors']} · "
-               f"Chi phí tính theo ${PRICE_IN:g}/${PRICE_OUT:g} mỗi triệu token vào/ra — chỉ ước tính.")
+               f"Trung bình \\${d['cost_per_essay']:.3f}/bài · tính theo \\${PRICE_IN:g} / \\${PRICE_OUT:g} "
+               f"mỗi triệu token vào / ra — chỉ ước tính.")
 
     st.markdown("#### Số bài theo ngày")
     st.bar_chart(d["per_day"], color="#1F5EEA", height=220, x_label="", y_label="Số bài")
