@@ -29,7 +29,9 @@ from core.auth import User, check_code, load_codes, quota_message, remaining  # 
 from core.metrics import compute  # noqa: E402
 from core.storage import SheetStore, now, submission_row  # noqa: E402
 from evaluation.render import ASPECTS, PROBLEM_LABELS_VI, PROBLEMS  # noqa: E402
+from ui.dashboard import render as render_dashboard  # noqa: E402
 from ui.export import build_html, file_name  # noqa: E402
+from ui.highlight import highlight_html, legend_html  # noqa: E402
 from ui.theme import apply_theme, brand, contact, hero  # noqa: E402
 
 MIN_WORDS, MAX_WORDS = 150, 600
@@ -118,7 +120,7 @@ def collect(sid: str, user: User) -> list[dict]:
 # ------------------------------------------------------------------ hiển thị kết quả
 def show_issue(i: dict, item_id: str, sid: str, role: str) -> None:
     with st.container(border=True):
-        st.markdown(f"**{i['title_vi']}**  \n{SEVERITY_VI.get(i['severity'], '')} · {EASE_VI.get(i['ease'], '')}")
+        st.markdown(f"**[{item_id}] {i['title_vi']}**  \n{SEVERITY_VI.get(i['severity'], '')} · {EASE_VI.get(i['ease'], '')}")
         for q in i["quotes_en"]:
             st.markdown(f"> {q}")
         st.markdown(f"**Vì sao:** {i['why_vi']}")
@@ -147,6 +149,12 @@ def show_result(res: dict, user: User) -> None:
     st.caption(f"Trình độ ước lượng: Từ vựng **{fb['level']['vocab_cefr']}** · Ngữ pháp **{fb['level']['grammar_cefr']}** "
                "— gợi ý bên dưới chỉ cao hơn trình độ này một bậc.")
     rate(sid, "L", role)
+    if res.get("essay"):
+        with st.expander("📝 Bài viết của bạn — các chỗ được nhận xét đã được đánh dấu", expanded=True):
+            body, n_marked, n_left = highlight_html(fb, res["essay"])
+            st.markdown(legend_html() + body, unsafe_allow_html=True)
+            st.caption("Nhãn nhỏ (ví dụ G1) khớp với thẻ nhận xét bên dưới. Di chuột / chạm vào chỗ tô để xem tên lỗi."
+                       + (f" {n_left} trích dẫn trùng chỗ hoặc không tìm thấy trong bài — xem ở thẻ nhận xét." if n_left else ""))
     for w in r.get("warnings", []):
         if role == "reviewer" or "từ" in w:
             st.info(w)
@@ -215,11 +223,18 @@ with st.sidebar:
         st.caption(f"Còn {remaining(user, st.session_state.used, secret('limits'))} lượt hôm nay")
     if store is None:
         st.warning("Chế độ chưa lưu dữ liệu (thiếu cấu hình Google Sheet).")
+    page = "Phân tích bài"
+    if user.role == "reviewer":
+        page = st.radio("Trang", ["Phân tích bài", "📊 Thống kê"], label_visibility="collapsed")
     if st.button("Đăng xuất"):
         st.session_state.clear()
         st.rerun()
 
 brand()
+
+if page == "📊 Thống kê":
+    render_dashboard(store)
+    st.stop()
 
 if "result" in st.session_state:
     res = st.session_state.result
@@ -284,11 +299,14 @@ if st.button("🔎 Phân tích bài", type="primary"):
             contact("limit")
             st.stop()
     sid, t0, r, err = uuid.uuid4().hex[:12], time.time(), None, None
-    with st.spinner("Đang phân tích bài… thường mất 1–2 phút, bạn đừng tắt trang nhé."):
-        try:
-            r = analyze(question, essay, target_band=target)
-        except Exception as e:
-            err = str(e)
+    bar = st.progress(0.03, text="Bắt đầu phân tích… thường mất 1–2 phút, bạn đừng tắt trang nhé.")
+    try:
+        r = analyze(question, essay, target_band=target,
+                    progress=lambda msg, pct: bar.progress(pct, text=f"{msg} · {time.time() - t0:.0f}s"))
+        bar.progress(1.0, text=f"Xong sau {time.time() - t0:.0f}s")
+    except Exception as e:
+        err = str(e)
+        bar.empty()
     seconds = time.time() - t0
     if store:
         try:

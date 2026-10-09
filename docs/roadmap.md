@@ -14,8 +14,8 @@
 | 2 | Không mất đánh giá khi quên bấm "Gửi" | P1 | ~30 phút | Thu dữ liệu |
 | 3 | 3 câu hỏi nhanh cuối trang (lớp đánh giá 4) | P1 | ~30 phút | Thu dữ liệu |
 | 4 | ✅ Học sinh tải nhận xét về để ôn lại (HTML) — 2026-10-10 | P2 | ~1–2 giờ | Tính năng |
-| 5 | Cải thiện giao diện (UI) | P2–P3 | tuỳ mục | Giao diện |
-| 6 | Thêm tính năng trên Streamlit (trang thống kê, nhiều trang) | P3 | ~2–3 giờ | Vận hành |
+| 5 | Cải thiện giao diện (UI) — ✅ thanh tiến trình, tô sáng câu (2026-10-10) | P2–P3 | tuỳ mục | Giao diện |
+| 6 | Thêm tính năng trên Streamlit — ✅ trang thống kê cho reviewer (2026-10-10) | P3 | ~2–3 giờ | Vận hành |
 | 7 | Backlog từ thiết kế gốc | P3 | lớn | Sản phẩm |
 
 ---
@@ -83,9 +83,9 @@
 
 | Việc | Ưu tiên | Ghi chú |
 |---|---|---|
-| **Thanh tiến trình trong lúc chờ 1–2 phút** (Đang đọc bài → Kiểm tra chéo lỗi → Hoàn thiện gợi ý) | P2 | Chờ lâu mà không thấy gì → người dùng tưởng app treo và tải lại trang. Dùng `st.status`; cần tách `analyze()` thành từng bước có callback |
+| ✅ **Thanh tiến trình trong lúc chờ 1–2 phút** (Đang đọc bài → Kiểm tra chéo lỗi → Hoàn thiện gợi ý) | P2 | Chờ lâu mà không thấy gì → người dùng tưởng app treo và tải lại trang. Dùng `st.status`; cần tách `analyze()` thành từng bước có callback |
 | **Kiểm tra trên điện thoại** (học sinh chủ yếu dùng điện thoại) | P2 | Các ô đánh giá xếp ngang có thể chật; xem lại khoảng cách, cỡ chữ |
-| **Tô sáng câu bị nhận xét ngay trong bài viết** | P3 | Đã có sẵn `repair_quote()` trong `core/filters.py` để tìm câu đầy đủ |
+| ✅ **Tô sáng câu bị nhận xét ngay trong bài viết** (`ui/highlight.py`, có cả trong file tải về) | P3 | Đã có sẵn `repair_quote()` trong `core/filters.py` để tìm câu đầy đủ |
 | **Tabs thay cho expander** (Tổng hợp · Ý tưởng · Bố cục · Từ vựng · Ngữ pháp · Ôn tập) | P3 | Gọn hơn trên điện thoại; cần thử xem học sinh có bỏ sót tab không |
 | **Mã QR Zalo** trong khối liên hệ | P3 | Chờ file ảnh QR |
 | **Logo dạng file** (PNG/SVG) thay logo chữ | P3 | Khi có file; dùng `st.logo` |
@@ -97,7 +97,7 @@
 
 | Việc | Ghi chú |
 |---|---|
-| **Trang thống kê cho reviewer/admin** (trang riêng trong app) | Số bài theo ngày, tỉ lệ 👍 theo khía cạnh, câu trả lời 3 câu hỏi nhanh, chi phí ước tính. Đọc trực tiếp từ Google Sheet → không cần chạy `pull_sheet.py` mỗi lần muốn xem nhanh. Dùng `st.navigation` (nhiều trang) |
+| ✅ **Trang thống kê cho reviewer/admin** (`ui/dashboard.py`) | Số bài theo ngày, tỉ lệ 👍 theo khía cạnh, câu trả lời 3 câu hỏi nhanh, chi phí ước tính. Đọc trực tiếp từ Google Sheet → không cần chạy `pull_sheet.py` mỗi lần muốn xem nhanh. Dùng `st.navigation` (nhiều trang) |
 | **Lịch sử bài của tôi** | Học sinh xem lại các bài đã nộp (chỉ bài có đồng ý lưu). Là bước đầu của "theo dõi tiến bộ" (thiết kế Giai đoạn 6) |
 | **Quản lý mã truy cập không cần sửa Secrets** | Đọc mã từ một tab riêng trong Google Sheet → thêm học sinh mới không cần vào Streamlit Cloud. Thiết kế mục 8 cũng gợi ý cách này |
 | **Giảm chi phí: prompt caching** | Prompt hệ thống dài (vài nghìn token) giống hệt nhau ở mọi lần gọi → dùng prompt caching của Anthropic API để giảm chi phí phần input |

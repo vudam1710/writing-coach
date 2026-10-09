@@ -45,7 +45,7 @@ def _user_message(question: str, essay: str, metrics: dict, target_band: float |
 
 
 def analyze(question: str, essay: str, target_band: float | None = None,
-            client: Anthropic | None = None, use_verifier: bool = True) -> dict:
+            client: Anthropic | None = None, use_verifier: bool = True, progress=None) -> dict:
     """Chế độ IELTS Task 2.
     1) 1 lần gọi cho cả 4 khía cạnh + band (lỗi schema → thử lại 1 lần kèm thông báo lỗi)
     2) code bỏ issue có câu viết lại = câu gốc
@@ -57,7 +57,10 @@ def analyze(question: str, essay: str, target_band: float | None = None,
     schema = _inline_refs(tool_schema())
 
     usages, feedback = [], None
+    step = progress or (lambda msg, pct: None)   # progress(msg, 0..1): app dùng để vẽ thanh tiến trình
     for attempt in range(2):
+        step("Đang đọc bài và phân tích 4 khía cạnh… (bước lâu nhất, ~1 phút)" if attempt == 0
+             else "Kết quả chưa đúng định dạng, đang thử lại…", 0.1 if attempt == 0 else 0.4)
         data, usage = call_tool(system, user, tool_name="submit_feedback",
                                 tool_description="Submit structured feedback for this essay.",
                                 schema=schema, max_tokens=MAX_TOKENS, client=client)
@@ -75,6 +78,7 @@ def analyze(question: str, essay: str, target_band: float | None = None,
     self_rejected = drop_identical_rewrites(feedback)
     verifier_rejected, verifier_relabeled = [], []
     if use_verifier:
+        step("Đang kiểm tra chéo các lỗi ngữ pháp và từ vựng…", 0.7)
         try:
             verdicts, v_usage = verify(essay, feedback, client=client)
             if v_usage:
@@ -82,6 +86,7 @@ def analyze(question: str, essay: str, target_band: float | None = None,
             verifier_rejected, verifier_relabeled = apply_verdicts(feedback, verdicts)
         except LLMError as e:   # verifier hỏng → vẫn trả kết quả, chỉ cảnh báo
             warnings.append(f"Verifier lỗi, chưa kiểm tra chéo: {e}")
+    step("Đang hoàn thiện gợi ý học thêm…", 0.92)
     filtered, truncated_quotes = apply_filters(feedback, essay, metrics["repeated_words"])   # gợi ý học thêm
 
     # ---- phần code làm sau khi có kết quả

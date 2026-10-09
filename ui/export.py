@@ -8,8 +8,10 @@
 from datetime import datetime
 from html import escape
 
-ASPECTS = [("ideas", "1. Ý tưởng & lập luận"), ("organization", "2. Bố cục & liên kết"),
-           ("vocabulary", "3. Từ vựng"), ("grammar", "4. Ngữ pháp & cấu trúc câu")]
+from ui.highlight import highlight_html, legend_html
+
+ASPECTS = [("ideas", "I", "1. Ý tưởng & lập luận"), ("organization", "O", "2. Bố cục & liên kết"),
+           ("vocabulary", "V", "3. Từ vựng"), ("grammar", "G", "4. Ngữ pháp & cấu trúc câu")]
 SEVERITY_VI = {"high": "Nghiêm trọng", "medium": "Trung bình", "low": "Nhẹ"}
 EASE_VI = {"easy": "Dễ sửa", "medium": "Sửa vừa", "hard": "Khó sửa"}
 KIND_VI = {"new": "Cấu trúc mới", "combination": "Kết hợp mới"}
@@ -58,8 +60,8 @@ def _e(x) -> str:
     return escape(str(x or ""))
 
 
-def _issue(i: dict) -> str:
-    out = [f'<div class="card"><h3>{_e(i["title_vi"])}</h3>',
+def _issue(i: dict, item_id: str) -> str:
+    out = [f'<div class="card"><h3>[{item_id}] {_e(i["title_vi"])}</h3>',
            f'<span class="tag {i["severity"]}">{SEVERITY_VI.get(i["severity"], "")}</span>'
            f'<span class="tag">{EASE_VI.get(i["ease"], "")}</span>']
     out += [f"<blockquote>{_e(q)}</blockquote>" for q in i["quotes_en"]]
@@ -111,7 +113,7 @@ def build_html(question: str, essay: str, r: dict, created: datetime | None = No
 
     parts.append(_study_list(fb))
 
-    for key, name in ASPECTS:
+    for key, code, name in ASPECTS:
         a = fb[key]
         parts.append(f"<h2>{name}</h2><p class='ok'>✔ {_e(a['strength_vi'])}</p>")
         if key == "ideas":
@@ -119,7 +121,7 @@ def build_html(question: str, essay: str, r: dict, created: datetime | None = No
                       for p in a.get("paragraph_notes", [])]
         if not a["issues"]:
             parts.append("<p class='meta'>Không có vấn đề cần sửa ở phần này.</p>")
-        parts += [_issue(i) for i in a["issues"]]
+        parts += [_issue(i, f"{code}{n}") for n, i in enumerate(a["issues"], 1)]
         if key == "ideas" and a.get("perspectives"):
             parts.append("<h3>💡 Mở rộng góc nhìn (cho bài sau)</h3><ul>"
                          + "".join(f"<li><b>{_e(p['angle_vi'])}:</b> {_e(p['outline_en'])}</li>" for p in a["perspectives"])
@@ -132,8 +134,10 @@ def build_html(question: str, essay: str, r: dict, created: datetime | None = No
                      + "".join(f"<div class='band'><small>{k}</small><b>{_e(v)}</b></div>" for k, v in cells)
                      + f"</div><p>{_e(b['next_step_vi'])}</p><p class='meta'>Điểm do AI ước lượng, chỉ mang tính tham khảo.</p>")
 
-    parts.append(f"<h2>Đề bài & bài viết của bạn</h2><div class='card'><p><b>Đề:</b> {_e(question)}</p>"
-                 f"<details open><summary>Bài viết</summary><div class='essay'>{_e(essay)}</div></details></div>")
+    marked, _, _ = highlight_html(fb, essay)
+    parts.append(f"<h2>Đề bài & bài viết của bạn</h2><p><b>Đề:</b> {_e(question)}</p>"
+                 f"<p class='meta'>Các chỗ được nhận xét đã được đánh dấu; nhãn (ví dụ G1) khớp với thẻ nhận xét ở trên.</p>"
+                 f"{legend_html()}{marked}")
 
     first = ZALO[0].replace(" ", "")
     parts.append(f'<div class="panel"><div class="eyebrow">Học cùng giáo viên</div><h3>Cần người chữa bài cùng bạn?</h3>'
