@@ -13,6 +13,12 @@ ASPECTS = [("ideas", "I", "1. Ý tưởng & lập luận"), ("organization", "O"
 # item_id N1.. = cấu trúc nên học (cột severity = new/combination) · W1.. = từ vựng nên học
 # X1.. = lỗi bị LOẠI (code hoặc verifier) → GV chấm: ✓ = loại đúng, ✗ = lỗi thật bị loại nhầm
 # Cột extras = hints_vi / alternatives_en / cờ cấu trúc bài / lý do loại. Issue bị verifier đổi tên có "[đổi tên]" ở extras.
+PROBLEMS = ["fake", "duplicate", "too_hard", "severity", "rewrite_off", "band", "want_more", "other"]
+PROBLEM_LABELS_VI = {"fake": "fake — lỗi không có thật", "duplicate": "duplicate — trùng mục khác",
+                     "too_hard": "too_hard — vượt trình độ (i+1)", "severity": "severity — sai mức độ / độ dễ",
+                     "rewrite_off": "rewrite_off — câu viết lại sai / lệch", "band": "band — band sai",
+                     "want_more": "want_more — đúng nhưng muốn thêm", "other": "other — khác"}
+
 ITEM_COLUMNS = ["tag", "essay_id", "item_id", "aspect", "severity", "ease", "title_vi", "quote_en",
                 "original_en", "improved_en", "learn_vi", "learn_cefr", "extras",
                 "verdict", "problem", "comment", "should_be"]

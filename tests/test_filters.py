@@ -9,12 +9,17 @@ ESSAY = ("These activities also help children improve their communication and te
          "If they study AI at school, they will have less time to play with friends outside, such as football.")
 
 
+def _good_vocab(n=4):
+    """Mục từ vựng hợp lệ: cụm không có trong bài, câu ví dụ đổi nhiều từ → không bị lọc."""
+    return [_w(f"gain experience in field {k}", "They learn things.", f"They gain hands-on experience in area {k}.")
+            for k in range(n)]
+
+
 def _fb(structures=None, vocab=None, vocab_issues=None):
     data = copy.deepcopy(VALID)
+    data["vocabulary"]["next_vocab"] = vocab or _good_vocab()
     if structures:
         data["grammar"]["next_structures"] = structures
-    if vocab:
-        data["vocabulary"]["next_vocab"] = vocab
     if vocab_issues:
         data["vocabulary"]["issues"] = vocab_issues
     return Feedback.model_validate(data)
@@ -37,6 +42,14 @@ def test_repair_truncated_quote():
     assert repair_quote("not in essay", ESSAY) is None
 
 
+def test_truncated_quote_counted_not_rewritten():
+    o = "If they study AI at school, they will have less time to play with friends outside."   # bài: "..., such as football."
+    fb = _fb(structures=[_s(o, "Studying AI at school would leave them less time to play.", "x"),
+                         _s("a b c", "x y z"), _s("a b", "c d")])
+    _, truncated = apply_filters(fb, ESSAY)
+    assert truncated == 1 and fb.grammar.next_structures[0].original_en == o
+
+
 def test_drop_structure_same_as_original():
     o = "If they study AI at school, they will have less time to play with friends outside."
     fb = _fb(structures=[_s(o, o, "điều kiện 1"), _s("a b c", "x y z"), _s("a b", "c d")])
@@ -47,10 +60,18 @@ def test_drop_structure_same_as_original():
 def test_drop_trivial_vocab():
     o = "These activities also help children improve their communication and teamwork skills."
     e = "These activities also help children develop their communication and teamwork skills."
-    good = [_w(f"p{n}", "a b c", "x y z") for n in range(3)]
-    fb = _fb(vocab=[_w("develop teamwork skills", o, e)] + good)
+    fb = _fb(vocab=[_w("develop teamwork skills", o, e)] + _good_vocab(3))
     dropped, _ = apply_filters(fb, ESSAY)
     assert [d["reason"] for d in dropped] == ["trivial_change"] and len(fb.vocabulary.next_vocab) == 3
+
+
+def test_phrase_in_essay_matches_whole_words_only():
+    fb = _fb(vocab=[_w("play", "They learn things.", "They play games and learn new things together.")] + _good_vocab(3))
+    dropped, _ = apply_filters(fb, ESSAY)                     # "play" có trong bài → loại
+    assert [d["reason"] for d in dropped] == ["phrase_already_in_essay"]
+    fb = _fb(vocab=[_w("lay", "They learn things.", "They lay the foundation for learning new things.")] + _good_vocab(3))
+    dropped, _ = apply_filters(fb, ESSAY)                     # "lay" chỉ nằm trong "play" → giữ
+    assert dropped == []
 
 
 def test_drop_alternative_with_overused_word():

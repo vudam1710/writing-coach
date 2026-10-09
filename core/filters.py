@@ -4,7 +4,9 @@ Từ review v4 (GV): 3 lỗi còn lại đều là "gợi ý thứ học sinh đ
 - W1 "develop teamwork skills": câu ví dụ chỉ đổi 1 từ so với câu gốc → không phải cụm mới
 - N2 câu điều kiện loại 1: câu ví dụ = câu gốc → bài đã có cấu trúc này
 - V2 từ thay thế "material wealth" chứa chính từ đang bị lặp ("wealth")
-Thêm: model hay cắt ngắn câu gốc ở N/W → nối lại thành câu đầy đủ trong bài (để sau này tô sáng được).
+Thêm: model hay cắt ngắn câu gốc ở N/W → chỉ ĐẾM (truncated_quotes), KHÔNG sửa câu gốc:
+nếu nối câu gốc thành câu đầy đủ mà câu ví dụ vẫn là bản ngắn, học sinh sẽ tưởng phần cuối câu bị xoá
+(và phép so sánh câu gốc / câu ví dụ ở bước 2–3 bị sai). Khi làm tô sáng trên giao diện: dùng repair_quote().
 Ngưỡng chọn trên dữ liệu v4: bắt 2/2 ca GV ✗, 0 ca GV ✓ bị loại nhầm.
 """
 import difflib
@@ -53,16 +55,14 @@ def _named_words(title: str) -> set[str]:
 
 
 def apply_filters(fb: Feedback, essay: str, repeated_words: list[str] | None = None) -> tuple[list[dict], int]:
-    """Trả (danh sách mục bị loại, số câu trích được nối lại). Sửa fb tại chỗ.
+    """Trả (danh sách mục bị loại, số câu gốc ở N/W bị cắt ngắn). Sửa fb tại chỗ.
     repeated_words: từ lặp ≥3 lần (core/metrics) — dùng cho bước 4."""
-    dropped, repaired = [], 0
+    dropped = []
     essay_n = _norm(essay)
 
-    # 1) nối lại câu gốc bị cắt ở N/W
-    for item in list(fb.grammar.next_structures) + list(fb.vocabulary.next_vocab):
-        full = repair_quote(item.original_en, essay)
-        if full:
-            item.original_en, repaired = full, repaired + 1
+    # 1) đếm câu gốc bị cắt ở N/W (không sửa — xem docstring đầu file)
+    truncated = sum(repair_quote(item.original_en, essay) is not None
+                    for item in list(fb.grammar.next_structures) + list(fb.vocabulary.next_vocab))
 
     # 2) cấu trúc: câu ví dụ = câu gốc → bài đã dùng cấu trúc này
     keep = []
@@ -77,7 +77,8 @@ def apply_filters(fb: Feedback, essay: str, repeated_words: list[str] | None = N
     # 3) từ vựng: cụm đã có sẵn trong bài, hoặc câu ví dụ chỉ đổi ≤1 từ
     keep = []
     for w in fb.vocabulary.next_vocab:
-        reason = ("phrase_already_in_essay" if _norm(w.phrase_en) in essay_n
+        # so theo TỪ nguyên vẹn (thêm khoảng trắng 2 đầu): "rise" không được khớp nhầm vào "enterprise"
+        reason = ("phrase_already_in_essay" if f" {_norm(w.phrase_en)} " in f" {essay_n} "
                   else "trivial_change" if changed_words(w.original_en, w.example_en) <= MAX_CHANGED_VOCAB
                   else None)
         if reason:
@@ -98,4 +99,4 @@ def apply_filters(fb: Feedback, essay: str, repeated_words: list[str] | None = N
             i.alternatives_en = [a for a in i.alternatives_en if a not in bad]
             dropped += [{"aspect": "alternative", "title_vi": a, "quote_en": i.title_vi,
                          "reason": "reuses_overused_word"} for a in bad]
-    return dropped, repaired
+    return dropped, truncated

@@ -28,3 +28,11 @@
 
 ## Để sau
 Chế độ Other · Google login/whitelist · Google Sheets · CI GitHub Actions · taxonomy ngữ pháp
+
+## Giai đoạn 2+4 — Web app + test người dùng (mốc `v0.2`) — xem docs/deploy_guide.md
+- [x] v4.1 filters + tag `v0.1`
+- [x] auth (mã truy cập + vai trò student/reviewer + trần lượt), storage (Google Sheet), app.py, pull_sheet.py
+- [ ] Phần A: spend limit, Google Cloud service account, Google Sheet, secrets.toml (user)
+- [ ] Chạy local + nộp thử 1 bài (user)
+- [ ] Phần C: merge → main, GitHub, Streamlit Cloud, checklist 5 ô → tag `v0.2` (user)
+- [ ] Phần D: hiệu chỉnh reviewer (2–3 bài chung) → mời 3–5 người → pull_sheet → review → v5
