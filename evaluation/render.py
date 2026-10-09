@@ -47,7 +47,7 @@ def review_items(tag: str, essay_id: str, r: dict) -> list[dict]:
         rows.append({**base, "item_id": f"W{n}", "aspect": "next_vocab", "title_vi": w["phrase_en"],
                      "learn_vi": w["meaning_vi"], "learn_cefr": w["cefr"],
                      "original_en": w["original_en"], "improved_en": w["example_en"]})
-    dropped = r.get("self_rejected", []) + r.get("verifier_rejected", [])
+    dropped = r.get("self_rejected", []) + r.get("verifier_rejected", []) + r.get("filtered", [])
     for n, d in enumerate(dropped, 1):
         rows.append({**base, "item_id": f"X{n}", "aspect": f"rejected:{d['aspect']}", "title_vi": d["title_vi"],
                      "quote_en": d["quote_en"], "extras": d["reason"]})
@@ -107,7 +107,7 @@ def render_markdown(tag: str, essay_id: str, r: dict) -> str:
         if key == "ideas" and a.get("perspectives"):
             out += ["", "**Mở rộng góc nhìn (cho bài sau):**"]
             out += [f"- [P{n}] {p['angle_vi']}: {p['outline_en']}" for n, p in enumerate(a["perspectives"], 1)]
-    dropped = r.get("self_rejected", []) + r.get("verifier_rejected", [])
+    dropped = r.get("self_rejected", []) + r.get("verifier_rejected", []) + r.get("filtered", [])
     if dropped or r.get("verifier_relabeled"):
         out += ["", "---", "## Đã lọc (chỉ để review, học sinh không thấy)"]
         out += [f"- [X{n}] ✂ {d['aspect']}: {d['title_vi']} — _{d['reason']}_" for n, d in enumerate(dropped, 1)]

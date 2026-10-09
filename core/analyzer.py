@@ -11,6 +11,7 @@ from core.band import MIN_WORDS, overall_band
 from core.llm import MODEL, LLMError, call_tool
 from core.metrics import compute, to_prompt_block
 from core.schema import Feedback, tool_schema
+from core.filters import apply_filters
 from core.verifier import VERIFY_VERSION, apply_verdicts, drop_identical_rewrites, verify
 from evaluation.checks import quote_in_essay
 
@@ -81,6 +82,7 @@ def analyze(question: str, essay: str, target_band: float | None = None,
             verifier_rejected, verifier_relabeled = apply_verdicts(feedback, verdicts)
         except LLMError as e:   # verifier hỏng → vẫn trả kết quả, chỉ cảnh báo
             warnings.append(f"Verifier lỗi, chưa kiểm tra chéo: {e}")
+    filtered, repaired_quotes = apply_filters(feedback, essay, metrics["repeated_words"])   # gợi ý học thêm
 
     # ---- phần code làm sau khi có kết quả
     if feedback.ielts is None:
@@ -112,6 +114,8 @@ def analyze(question: str, essay: str, target_band: float | None = None,
         "self_rejected": self_rejected,
         "verifier_rejected": verifier_rejected,
         "verifier_relabeled": verifier_relabeled,
+        "filtered": filtered,
+        "repaired_quotes": repaired_quotes,
         "meta": {"prompt_version": PROMPT_VERSION, "verify_version": VERIFY_VERSION if use_verifier else None,
                  "model": MODEL, "llm_calls": len(usages),
                  "input_tokens": sum(u["input_tokens"] for u in usages),
