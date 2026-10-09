@@ -29,6 +29,7 @@ from core.auth import User, check_code, load_codes, quota_message, remaining  # 
 from core.metrics import compute  # noqa: E402
 from core.storage import SheetStore, now, submission_row  # noqa: E402
 from evaluation.render import ASPECTS, PROBLEM_LABELS_VI, PROBLEMS  # noqa: E402
+from ui.export import build_html, file_name  # noqa: E402
 from ui.theme import apply_theme, brand, contact, hero  # noqa: E402
 
 MIN_WORDS, MAX_WORDS = 150, 600
@@ -226,6 +227,11 @@ if "result" in st.session_state:
         del st.session_state["result"]
         st.session_state.pop("_items", None)
         st.rerun()
+    if res.get("question"):
+        st.download_button("📥 Tải nhận xét về để ôn lại", type="primary", on_click="ignore",
+                           data=build_html(res["question"], res["essay"], res["r"]).encode("utf-8"),
+                           file_name=file_name(), mime="text/html",
+                           help="File HTML: mở bằng trình duyệt; muốn PDF thì bấm Ctrl+P → Lưu thành PDF")
     show_result(res, user)
     st.divider()
     st.text_area("Góp ý chung về lần nhận xét này (không bắt buộc)", key=f"{res['sid']}:GENERAL:comment")
@@ -296,6 +302,6 @@ if st.button("🔎 Phân tích bài", type="primary"):
         if user.role == "reviewer":
             st.code(err)
         st.stop()
-    st.session_state.result = {"sid": sid, "r": r, "seconds": seconds}
+    st.session_state.result = {"sid": sid, "r": r, "seconds": seconds, "question": question, "essay": essay}
     st.session_state.pop("_items", None)
     st.rerun()

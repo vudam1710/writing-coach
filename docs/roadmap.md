@@ -13,7 +13,7 @@
 | 1 | Hướng dẫn đánh giá trong tin nhắn mời | P1 | 10 phút | Thu dữ liệu |
 | 2 | Không mất đánh giá khi quên bấm "Gửi" | P1 | ~30 phút | Thu dữ liệu |
 | 3 | 3 câu hỏi nhanh cuối trang (lớp đánh giá 4) | P1 | ~30 phút | Thu dữ liệu |
-| 4 | Học sinh tải nhận xét về để ôn lại | P2 | ~1–2 giờ | Tính năng |
+| 4 | ✅ Học sinh tải nhận xét về để ôn lại (HTML) — 2026-10-10 | P2 | ~1–2 giờ | Tính năng |
 | 5 | Cải thiện giao diện (UI) | P2–P3 | tuỳ mục | Giao diện |
 | 6 | Thêm tính năng trên Streamlit (trang thống kê, nhiều trang) | P3 | ~2–3 giờ | Vận hành |
 | 7 | Backlog từ thiết kế gốc | P3 | lớn | Sản phẩm |
@@ -56,7 +56,7 @@
 - `pull_sheet.py` tổng hợp thành tỉ lệ trong `summary.csv` (ví dụ: 80% "hiểu hết/phần lớn").
 - **File**: `app.py`, `evaluation/pull_sheet.py`.
 
-## 4. Học sinh tải nhận xét về để ôn lại — P2
+## 4. Học sinh tải nhận xét về để ôn lại — P2 · ✅ đã làm (`ui/export.py`, bản HTML)
 
 **Đánh giá**: nên làm. Rất hợp với triết lý *dạy chứ không sửa* — phần "Cấu trúc nên học" và "Từ vựng nên học" chính là thứ học sinh cần mang theo để luyện, không nên mất khi đóng tab. Tải về diễn ra **trên máy học sinh**, không lưu thêm gì lên server → không ảnh hưởng quyền riêng tư (kể cả khi không tick "đồng ý lưu").
 
