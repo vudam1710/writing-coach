@@ -29,13 +29,15 @@ from core.auth import User, check_code, load_codes, quota_message, remaining  # 
 from core.metrics import compute  # noqa: E402
 from core.storage import SheetStore, now, submission_row  # noqa: E402
 from evaluation.render import ASPECTS, PROBLEM_LABELS_VI, PROBLEMS  # noqa: E402
+from ui.theme import apply_theme, brand, contact, hero  # noqa: E402
 
 MIN_WORDS, MAX_WORDS = 150, 600
 SEVERITY_VI = {"high": "🔴 Nghiêm trọng", "medium": "🟠 Trung bình", "low": "🟢 Nhẹ"}
 EASE_VI = {"easy": "Dễ sửa", "medium": "Sửa vừa", "hard": "Khó sửa"}
 KIND_VI = {"new": "Cấu trúc mới", "combination": "Kết hợp mới"}
 
-st.set_page_config(page_title="Writing Coach", page_icon="✍️", layout="centered")
+st.set_page_config(page_title="Writing Coach · LogiQ Hub", page_icon="✍️", layout="centered")
+apply_theme()
 
 
 @st.cache_resource(show_spinner=False)
@@ -62,9 +64,9 @@ def login() -> User:
     if not codes:                                     # local, chưa cấu hình mã → chế độ dev
         st.session_state.user = User("local-dev", "reviewer")
         return st.session_state.user
-    st.title("✍️ Writing Coach")
-    st.write("Công cụ nhận xét bài IELTS Writing Task 2 — **dạy chứ không sửa**.")
-    code = st.text_input("Mã truy cập", type="password")
+    brand()
+    hero(big=True)
+    code = st.text_input("Mã truy cập", type="password", placeholder="Mã trong tin nhắn mời")
     if st.button("Vào", type="primary"):
         user = check_code(code, codes)
         if user:
@@ -216,7 +218,7 @@ with st.sidebar:
         st.session_state.clear()
         st.rerun()
 
-st.title("✍️ Writing Coach")
+brand()
 
 if "result" in st.session_state:
     res = st.session_state.result
@@ -240,10 +242,13 @@ if "result" in st.session_state:
         else:
             st.info("Chế độ dev — không lưu. Dữ liệu sẽ gửi:")
             st.json(rows)
+    contact("result")
     st.stop()
 
-st.caption("IELTS Writing Task 2 · Công cụ chỉ ra điều quan trọng nhất cần cải thiện và minh hoạ bằng **một** câu "
-           "từ chính bài của bạn — phần còn lại bạn tự sửa.")
+hero(big=False)
+
+st.caption("Công cụ chỉ ra điều quan trọng nhất cần cải thiện và minh hoạ bằng **một** câu từ chính bài của bạn "
+           "— phần còn lại bạn tự sửa.")
 question = st.text_area("Đề bài", height=110, placeholder="Dán đề bài IELTS Writing Task 2…")
 essay = st.text_area("Bài viết của bạn", height=320, placeholder="Dán bài viết…")
 wc = compute(essay)["word_count"] if essay.strip() else 0
@@ -270,6 +275,7 @@ if st.button("🔎 Phân tích bài", type="primary"):
         msg = quota_message(user, mine, total, secret("limits"))
         if msg:
             st.error(msg)
+            contact("limit")
             st.stop()
     sid, t0, r, err = uuid.uuid4().hex[:12], time.time(), None, None
     with st.spinner("Đang phân tích bài… thường mất 1–2 phút, bạn đừng tắt trang nhé."):
