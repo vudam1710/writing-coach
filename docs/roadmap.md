@@ -17,6 +17,7 @@
 | 5 | Cải thiện giao diện (UI) — ✅ thanh tiến trình, tô sáng câu (2026-10-10) | P2–P3 | tuỳ mục | Giao diện |
 | 6 | Thêm tính năng trên Streamlit — ✅ trang thống kê cho reviewer (2026-10-10) | P3 | ~2–3 giờ | Vận hành |
 | 7 | Backlog từ thiết kế gốc | P3 | lớn | Sản phẩm |
+| 8 | Thông báo về điện thoại khi có người dùng (Telegram) | P2 | ~30 phút | Vận hành |
 
 ---
 
@@ -111,6 +112,48 @@
 - **GitHub Actions** chạy `pytest` tự động mỗi lần push
 - LLM làm "giám khảo" phụ — chỉ sau khi đã đo được độ khớp với giáo viên
 - IELTS **Task 1**
+
+---
+
+## 8. Thông báo về điện thoại khi có người dùng — P2
+
+**Mục đích**: biết ngay khi có người nộp bài / bài bị lỗi / học sinh nghi lỗi bịa — không phải mở Google Sheet hay trang Thống kê để kiểm tra.
+
+**So sánh cách làm**
+
+| Cách | Thông báo đến | Công sức | Nhận xét |
+|---|---|---|---|
+| A. Thông báo có sẵn của Google Sheet | Email | 0 code, 2 phút | Tools → Notification settings → Edit notifications → "Any changes are made" + "Email – right away". Chỉ báo "Sheet có thay đổi", không có nội dung. **Dùng tạm được ngay hôm nay** |
+| **B. Telegram bot** | App Telegram (push ngay) | ~30 phút | Miễn phí, ổn định, nội dung tuỳ ý. **✅ Chọn cách này** |
+| C. ntfy | App ntfy | ~20 phút | Không cần tài khoản, nhưng chạy trên server công khai — ai đoán được tên kênh là đọc được |
+| D. Zalo | Zalo | Khó | Cần Zalo Official Account, xác minh, gia hạn token định kỳ — quá nặng cho mục đích này |
+
+**Cách làm (Telegram)**
+1. *Bạn (10 phút)*: Telegram → nhắn **@BotFather** → `/newbot` → đặt tên → lưu **token**. Nhắn 1 tin bất kỳ cho bot vừa tạo → lấy **chat_id** (Claude hướng dẫn). Thêm vào Streamlit Cloud → Secrets:
+   ```toml
+   [telegram]
+   bot_token = "123456:ABC..."
+   chat_id = "123456789"
+   ```
+2. *Code*: `core/notify.py` (~30 dòng) gọi Telegram Bot API (`sendMessage`); `app.py` gọi ở 3 chỗ.
+
+**Gửi khi nào — nội dung**
+
+| Sự kiện | Ví dụ tin nhắn |
+|---|---|
+| Có người nộp bài | 📝 minh_hs (học sinh) vừa nộp bài · band 6.0 · chờ 95s |
+| Bài bị lỗi khi phân tích | ⚠️ Lỗi khi phân tích bài của co_lan: timeout |
+| Học sinh gửi đánh giá có cờ "Mình nghĩ chỗ này không sai" / 👎 | 🚩 minh_hs đánh dấu 2 mục "không sai" (G1, V2) — nên kiểm tra lỗi bịa |
+
+**Nguyên tắc**
+- **Không** gửi nội dung bài viết / đề bài lên Telegram — chỉ tên, vai trò, band, thời gian, mã mục.
+- Gửi thất bại (mạng, sai token) → **bỏ qua, app vẫn chạy bình thường** (timeout ngắn ~3 giây, bắt mọi lỗi).
+- Token và chat_id chỉ nằm trong Secrets — không lên GitHub.
+- Không cấu hình `[telegram]` → không gửi gì (chạy local / dev không bị làm phiền).
+
+**Mở rộng sau**: khi nhiều người dùng, chuyển sang **tóm tắt 1 lần/ngày** (ví dụ 21:00: *"Hôm nay 12 bài · 3 lượt 👎 · 1 cờ 'không sai' · chi phí $1.6"*) — cần một tác vụ chạy theo lịch (GitHub Actions cron đọc Google Sheet rồi gửi Telegram).
+
+**Test**: `tests/test_notify.py` kiểm tra nội dung tin nhắn (không gửi thật) + kiểm tra không có nội dung bài trong tin; gửi thử 1 tin thật từ máy.
 
 ---
 
