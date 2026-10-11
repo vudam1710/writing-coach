@@ -1,8 +1,8 @@
 """Writing Coach — giao diện Streamlit (giai đoạn test với người dùng).
 
-Luồng: nhập mã truy cập → nhập đề + bài → phân tích (2 lượt gọi LLM, ~1–2 phút) → kết quả + đánh giá từng mục.
-- Học sinh: 👍/👎 + "Mình không hiểu" / "Mình nghĩ chỗ này không sai"
-- Reviewer (giáo viên): ✓ / ~ / ✗ + loại lỗi + góp ý + đáp án đúng (giống file review_items.csv)
+Luồng: nhập mã truy cập → nhập đề + bài → phân tích (2 lượt gọi LLM, ~1–2 phút) → kết quả.
+- Học sinh: chỉ đọc nhận xét; riêng mỗi lỗi có ô "Mình nghĩ chỗ này không sai" (tín hiệu lỗi bịa, tự lưu khi tick).
+- Reviewer (giáo viên): đánh giá từng mục ✓ / ~ / ✗ + loại lỗi + góp ý + đáp án đúng (giống file review_items.csv)
 Bài nộp + đánh giá lưu vào Google Sheet (core/storage.py). Chạy local không có secrets → chế độ dev (không lưu).
 """
 import os
@@ -80,19 +80,37 @@ def login() -> User:
 
 
 # ------------------------------------------------------------------ widget đánh giá từng mục
+def save_not_wrong(sid: str, item_id: str) -> None:
+    """Học sinh tick/bỏ tick "không sai" → ghi ngay 1 dòng vào tab feedback (không cần nút gửi).
+    Bỏ tick → ghi dòng flags rỗng; dashboard / pull_sheet lấy dòng MỚI NHẤT nên tự đè lên dòng cũ."""
+    ss, user = st.session_state, st.session_state.user
+    row = {"submission_id": sid, "created_at": now(), "tester": user.name, "role": user.role, "item_id": item_id,
+           "flags": "not_wrong" if ss.get(f"{sid}:{item_id}:nw") else ""}
+    try:
+        store = get_store()
+    except Exception:
+        store = None
+    if store is None:
+        st.toast(f"Chế độ dev — không lưu: {row}")
+        return
+    try:
+        store.add_feedback([row])
+        st.toast("Đã ghi nhận, cảm ơn bạn!" if row["flags"] else "Đã bỏ đánh dấu.")
+    except Exception as e:
+        st.toast(f"Chưa lưu được, bạn thử lại nhé. ({e})")
+
+
 def rate(sid: str, item_id: str, role: str, is_issue: bool = False) -> None:
+    """Reviewer: chấm đầy đủ. Học sinh: chỉ có ô "không sai" ở các thẻ lỗi."""
+    if role != "reviewer":
+        if is_issue:
+            st.checkbox("Mình nghĩ chỗ này không sai", key=f"{sid}:{item_id}:nw",
+                        on_change=save_not_wrong, args=(sid, item_id))
+        return
     st.session_state.setdefault("_items", [])
     if item_id not in st.session_state._items:
         st.session_state._items.append(item_id)
     k = f"{sid}:{item_id}"
-    if role == "student":
-        cols = st.columns([1, 2, 3]) if is_issue else st.columns([1, 5])
-        with cols[0]:
-            st.feedback("thumbs", key=k + ":rating")
-        if is_issue:
-            cols[1].checkbox("Mình không hiểu", key=k + ":nu")
-            cols[2].checkbox("Mình nghĩ chỗ này không sai", key=k + ":nw")
-        return
     c1, c2, c3, c4 = st.columns([2, 3, 4, 4])
     c1.radio("Đánh giá", ["✓", "~", "✗"], index=None, horizontal=True, key=k + ":verdict",
              label_visibility="collapsed")
@@ -106,13 +124,10 @@ def collect(sid: str, user: User) -> list[dict]:
     ss, rows = st.session_state, []
     for item in ss.get("_items", []) + ["GENERAL"]:
         k = f"{sid}:{item}"
-        rating = ss.get(k + ":rating")
-        flags = ",".join(f for f, key in (("not_understand", ":nu"), ("not_wrong", ":nw")) if ss.get(k + key))
         row = {"submission_id": sid, "created_at": now(), "tester": user.name, "role": user.role, "item_id": item,
-               "rating": {1: "up", 0: "down"}.get(rating, ""), "flags": flags,
                "verdict": ss.get(k + ":verdict") or "", "problem": ss.get(k + ":problem") or "",
                "comment": (ss.get(k + ":comment") or "").strip(), "should_be": (ss.get(k + ":should_be") or "").strip()}
-        if any(row[c] for c in ("rating", "flags", "verdict", "problem", "comment", "should_be")):
+        if any(row[c] for c in ("verdict", "problem", "comment", "should_be")):
             rows.append(row)
     return rows
 
@@ -248,6 +263,9 @@ if "result" in st.session_state:
                            file_name=file_name(), mime="text/html",
                            help="File HTML: mở bằng trình duyệt; muốn PDF thì bấm Ctrl+P → Lưu thành PDF")
     show_result(res, user)
+    if user.role != "reviewer":          # học sinh chỉ đọc nhận xét
+        contact("result")
+        st.stop()
     st.divider()
     st.text_area("Góp ý chung về lần nhận xét này (không bắt buộc)", key=f"{res['sid']}:GENERAL:comment")
     if st.button("📨 Gửi đánh giá", type="primary"):
@@ -276,9 +294,8 @@ wc = compute(essay)["word_count"] if essay.strip() else 0
 st.caption(f"{wc} từ · cần từ {MIN_WORDS} đến {MAX_WORDS} từ")
 target = st.selectbox("Band mục tiêu (không bắt buộc)", [None] + [x / 2 for x in range(10, 18)],
                       format_func=lambda x: "Không chọn" if x is None else str(x))
-consent = st.checkbox("Mình đồng ý cho lưu đề và bài viết để cải thiện công cụ (không bắt buộc)")
-st.caption("Bài viết được gửi tới AI (Anthropic) để phân tích. Nếu không tick ô trên, chỉ lưu số liệu thống kê "
-           "(thời gian, band, số token), không lưu nội dung bài.")
+st.info("Lưu ý: đề và bài viết của bạn sẽ được gửi tới AI (Anthropic) để phân tích và **được lưu lại để cải thiện "
+        "công cụ**. Bài chỉ dùng nội bộ, không công khai.", icon="ℹ️")
 
 if st.button("🔎 Phân tích bài", type="primary"):
     if not question.strip():
@@ -302,7 +319,7 @@ if st.button("🔎 Phân tích bài", type="primary"):
     bar = st.progress(0.03, text="Bắt đầu phân tích… thường mất 1–2 phút, bạn đừng tắt trang nhé.")
     try:
         r = analyze(question, essay, target_band=target,
-                    progress=lambda msg, pct: bar.progress(pct, text=f"{msg} · {time.time() - t0:.0f}s"))
+                    progress=lambda msg, pct: bar.progress(pct, text=f"{msg} · {pct:.0%} · {time.time() - t0:.0f}s"))
         bar.progress(1.0, text=f"Xong sau {time.time() - t0:.0f}s")
     except Exception as e:
         err = str(e)
@@ -310,7 +327,7 @@ if st.button("🔎 Phân tích bài", type="primary"):
     seconds = time.time() - t0
     if store:
         try:
-            store.add_submission(submission_row(sid, user.name, user.role, consent, question, essay, wc, target, r,
+            store.add_submission(submission_row(sid, user.name, user.role, True, question, essay, wc, target, r,
                                                 seconds, status="ok" if r else f"error: {err}"[:300]))
             st.session_state.used = st.session_state.get("used", 0) + 1
         except Exception as e:

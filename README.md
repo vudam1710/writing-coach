@@ -87,8 +87,8 @@ What the data changed in my thinking:
   <img src="docs/images/dashboard.png" width="49%" alt="Reviewer dashboard">
 </p>
 
-- **Access codes with roles.** *Students* rate each piece of feedback 👍/👎 and can flag "I don't understand" or **"I think this isn't wrong"** — the cheapest possible signal for hallucinated errors. *Reviewers* (teachers) grade every item with the same ✓/~/✗ + label scheme used offline.
-- **Storage.** Submissions and ratings go to a private Google Sheet via a service account. Essays are stored only with explicit opt-in consent; otherwise only usage statistics are kept.
+- **Access codes with roles.** *Students* just read the feedback (no rating widgets, to keep the page clean). *Reviewers* (teachers) grade every item with the same ✓/~/✗ + label scheme used offline.
+- **Storage.** Submissions and ratings go to a private Google Sheet via a service account. Essays are always stored (users see a clear notice before submitting) so every live submission can feed the review loop.
 - **Inter-rater agreement.** `evaluation/pull_sheet.py` turns the live data into the same review format as the offline rounds and reports how often reviewers agree. Reviewers first grade 2–3 shared essays so criteria can be aligned before their reviews are trusted.
 - **Dashboard.** Reviewers get an in-app statistics page: volume, wait time, estimated cost, 👍 rate per feedback type, reviewer verdicts and the most common failure labels.
 - **Limits.** Daily quotas per code and system-wide, plus a monthly spend cap on the API key.
@@ -135,7 +135,7 @@ To enable login and storage, copy `.streamlit/secrets.toml.example` to `.streaml
 ## Data & privacy
 
 - No student essays, teacher labels, access codes or keys are in this repository (`.gitignore` blocks `data/gold/`, `evaluation/results/*/raw/`, `.env`, `secrets.toml`). Published evaluation files contain metrics only.
-- Learners are told that essays are sent to an AI model for analysis; saving an essay is opt-in.
+- Learners are told that essays are sent to an AI model for analysis; a notice on the input page says essays are saved to improve the tool.
 
 ## Roadmap
 

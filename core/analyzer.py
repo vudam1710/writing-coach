@@ -2,6 +2,7 @@
 Thí nghiệm sau (giai đoạn 3): 1 call cho cả 4 khía cạnh vs 4 call riêng.
 """
 import json
+import time
 from pathlib import Path
 
 from anthropic import Anthropic
@@ -12,12 +13,32 @@ from core.llm import MODEL, LLMError, call_tool
 from core.metrics import compute, to_prompt_block
 from core.schema import Feedback, tool_schema
 from core.filters import apply_filters
-from core.verifier import VERIFY_VERSION, apply_verdicts, drop_identical_rewrites, verify
+from core.verifier import VERIFY_VERSION, apply_verdicts, claims, drop_identical_rewrites, verify
 from evaluation.checks import quote_in_essay
 
 PROMPT_VERSION = "ielts_v4"
 PROMPT_PATH = Path(__file__).parent.parent / "prompts" / f"{PROMPT_VERSION}.md"
 MAX_TOKENS = 8000
+
+# ---- thanh tiến trình: % = số ký tự JSON đã nhận / độ dài thường gặp.
+# Thời gian chờ gần như tỉ lệ với số token model sinh ra → đây là % thật, không phải số đặt tay.
+# Độ dài thật mỗi lần chạy được lưu ở meta.stream_chars → xem trong Sheet rồi chỉnh 2 số dưới cho sát.
+EXPECTED_MAIN_CHARS = 12000      # eval v4: JSON feedback 9.5k–13k ký tự
+EXPECTED_CHARS_PER_CLAIM = 180   # verifier: ~1 câu lý do / lỗi → biết trước số lỗi nên ước lượng khá chuẩn
+MAIN_SPAN, VERIFY_SPAN = (0.03, 0.85), (0.85, 0.97)   # lượt chính chiếm ~80% thời gian chờ
+
+
+def _streamer(step, msg: str, span: tuple[float, float], expected: int):
+    """Đổi số ký tự đã nhận → step(msg, %) trong khoảng span. Tối đa ~4 lần cập nhật/giây cho nhẹ."""
+    lo, hi = span
+    last = [0.0]
+
+    def on_chars(n: int) -> None:
+        t = time.monotonic()
+        if t - last[0] >= 0.25:
+            last[0] = t
+            step(msg, lo + (hi - lo) * min(n / expected, 0.98))
+    return on_chars
 
 
 def _inline_refs(schema: dict) -> dict:
@@ -59,11 +80,13 @@ def analyze(question: str, essay: str, target_band: float | None = None,
     usages, feedback = [], None
     step = progress or (lambda msg, pct: None)   # progress(msg, 0..1): app dùng để vẽ thanh tiến trình
     for attempt in range(2):
-        step("Đang đọc bài và phân tích 4 khía cạnh… (bước lâu nhất, ~1 phút)" if attempt == 0
-             else "Kết quả chưa đúng định dạng, đang thử lại…", 0.1 if attempt == 0 else 0.4)
+        step("Đang gửi bài cho AI đọc…" if attempt == 0 else "Kết quả chưa đúng định dạng, đang thử lại…",
+             MAIN_SPAN[0])
+        on_chars = (_streamer(step, "Đang viết nhận xét 4 khía cạnh" if attempt == 0 else "Đang thử lại",
+                              MAIN_SPAN, EXPECTED_MAIN_CHARS) if progress else None)
         data, usage = call_tool(system, user, tool_name="submit_feedback",
                                 tool_description="Submit structured feedback for this essay.",
-                                schema=schema, max_tokens=MAX_TOKENS, client=client)
+                                schema=schema, max_tokens=MAX_TOKENS, client=client, on_chars=on_chars)
         usages.append(usage)
         try:
             feedback = Feedback.model_validate(data)
@@ -78,15 +101,18 @@ def analyze(question: str, essay: str, target_band: float | None = None,
     self_rejected = drop_identical_rewrites(feedback)
     verifier_rejected, verifier_relabeled = [], []
     if use_verifier:
-        step("Đang kiểm tra chéo các lỗi ngữ pháp và từ vựng…", 0.7)
+        items = claims(feedback)
+        step(f"Đang kiểm tra chéo {len(items)} lỗi ngữ pháp và từ vựng", VERIFY_SPAN[0])
+        on_chars = (_streamer(step, f"Đang kiểm tra chéo {len(items)} lỗi ngữ pháp và từ vựng", VERIFY_SPAN,
+                              max(len(items), 1) * EXPECTED_CHARS_PER_CLAIM) if progress else None)
         try:
-            verdicts, v_usage = verify(essay, feedback, client=client)
+            verdicts, v_usage = verify(essay, feedback, client=client, items=items, on_chars=on_chars)
             if v_usage:
                 usages.append(v_usage)
             verifier_rejected, verifier_relabeled = apply_verdicts(feedback, verdicts)
         except LLMError as e:   # verifier hỏng → vẫn trả kết quả, chỉ cảnh báo
             warnings.append(f"Verifier lỗi, chưa kiểm tra chéo: {e}")
-    step("Đang hoàn thiện gợi ý học thêm…", 0.92)
+    step("Đang hoàn thiện", VERIFY_SPAN[1])
     filtered, truncated_quotes = apply_filters(feedback, essay, metrics["repeated_words"])   # gợi ý học thêm
 
     # ---- phần code làm sau khi có kết quả
@@ -124,5 +150,6 @@ def analyze(question: str, essay: str, target_band: float | None = None,
         "meta": {"prompt_version": PROMPT_VERSION, "verify_version": VERIFY_VERSION if use_verifier else None,
                  "model": MODEL, "llm_calls": len(usages),
                  "input_tokens": sum(u["input_tokens"] for u in usages),
-                 "output_tokens": sum(u["output_tokens"] for u in usages)},
+                 "output_tokens": sum(u["output_tokens"] for u in usages),
+                 "stream_chars": [u["chars"] for u in usages if "chars" in u]},
     }

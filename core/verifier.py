@@ -91,14 +91,15 @@ def apply_verdicts(fb: Feedback, verdicts: list[dict]) -> tuple[list[dict], list
     return rejected, relabeled
 
 
-def verify(essay: str, fb: Feedback, client: Anthropic | None = None) -> tuple[list[dict], dict | None]:
+def verify(essay: str, fb: Feedback, client: Anthropic | None = None, items: list[dict] | None = None,
+           on_chars=None) -> tuple[list[dict], dict | None]:
     """Gọi LLM kiểm tra từng claim. Không có claim → không gọi API."""
-    items = claims(fb)
+    items = claims(fb) if items is None else items
     if not items:
         return [], None
     user = (f"<essay>\n{essay.strip()}\n</essay>\n\n<claims>\n"
             f"{json.dumps(items, ensure_ascii=False, indent=1)}\n</claims>")
     data, usage = call_tool(PROMPT_PATH.read_text(encoding="utf-8"), user, tool_name="submit_verdicts",
                             tool_description="Submit one verdict per claim.", schema=SCHEMA,
-                            max_tokens=3000, client=client)
+                            max_tokens=3000, client=client, on_chars=on_chars)
     return data.get("verdicts", []), usage

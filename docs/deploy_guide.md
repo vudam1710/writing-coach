@@ -83,7 +83,7 @@ Sau khi mình làm xong phần B, sẽ có file mẫu `.streamlit/secrets.toml.e
 | `submissions` | submission_id, created_at, tester, consent, question, essay, word_count, overall, TR, CC, LR, GRA, prompt_version, verify_version, model, input_tokens, output_tokens, seconds, result_json |
 | `feedback` | submission_id, created_at, tester, role, item_id, rating (up/down — học sinh), flags (not_understand, not_wrong), verdict, problem, comment, should_be (reviewer) |
 
-**Quyền riêng tư**: nếu người dùng **không** tick "đồng ý lưu bài", chỉ lưu dòng thống kê (tester, thời gian, band, token) — **không** lưu đề, bài và result_json.
+**Quyền riêng tư**: (cập nhật 2026-10) bỏ ô đồng ý — bài luôn được lưu, trang nhập bài hiện thông báo rõ "bài sẽ được lưu để cải thiện công cụ". Cột `consent` luôn = yes.
 
 **Bạn chạy thử ở máy** (sau B):
 ```bash
@@ -132,7 +132,7 @@ git push -u origin main --tags
 - [ ] Mã sai → bị chặn; mã học sinh thấy 👍/👎, mã reviewer thấy ✓/~/✗ + mục Đã lọc
 - [ ] Mã đúng → nộp 1 bài → có kết quả trong ~1–2 phút
 - [ ] Sheet có dòng mới; 👍/👎 ghi vào tab `feedback`
-- [ ] Không tick "đồng ý lưu" → Sheet không có nội dung bài
+- [ ] Trang nhập bài có thông báo "bài sẽ được lưu"; Sheet có đủ đề + bài + result_json
 - [ ] Thử trên điện thoại
 
 ✅ Xong khi: cả 5 ô trên đều đạt → `git tag v0.2`.
@@ -147,8 +147,8 @@ git push -u origin main --tags
 
 **Gửi kèm link** (mẫu tin nhắn):
 > Mình đang thử nghiệm công cụ nhận xét bài IELTS Writing Task 2. Link: … · Mã của bạn: … (đừng chia sẻ).
-> Bài viết được gửi qua AI (Anthropic) để phân tích; nếu bạn tick "đồng ý lưu", bài sẽ được lưu riêng để mình cải thiện công cụ.
-> Sau khi đọc nhận xét, bấm 👍/👎 ở những mục bạn thấy hữu ích / sai, và ghi góp ý nếu có. Mỗi người tối đa 10 bài/ngày.
+> Bài viết được gửi qua AI (Anthropic) để phân tích; bài sẽ được lưu riêng (không công khai) để mình cải thiện công cụ.
+> Mỗi người tối đa 10 bài/ngày.
 
 **Hỏi thêm sau 1 tuần** (3 câu, theo thiết kế mục 10.2 lớp 4): Có hiểu nhận xét không? Có tự sửa được bài không? Có muốn dùng tiếp không?
 
